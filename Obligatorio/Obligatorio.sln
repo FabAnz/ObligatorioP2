@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35219.272
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Obligatorio", "Obligatorio.csproj", "{DA8E24DE-D1C8-4479-AEED-186F1EEA5366}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogicaNegocio", "..\LogicaNegocio\LogicaNegocio.csproj", "{92D7A701-7853-48C2-B71A-074E4670C72E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DA8E24DE-D1C8-4479-AEED-186F1EEA5366}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA8E24DE-D1C8-4479-AEED-186F1EEA5366}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA8E24DE-D1C8-4479-AEED-186F1EEA5366}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA8E24DE-D1C8-4479-AEED-186F1EEA5366}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92D7A701-7853-48C2-B71A-074E4670C72E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92D7A701-7853-48C2-B71A-074E4670C72E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92D7A701-7853-48C2-B71A-074E4670C72E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92D7A701-7853-48C2-B71A-074E4670C72E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {434032B0-4C47-42FC-9600-06A01F907AAE}
+	EndGlobalSection
+EndGlobal
