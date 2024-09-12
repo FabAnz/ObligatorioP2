@@ -109,10 +109,21 @@
             return lista;
         }
 
-        public string MostrarPublicaciones(DateTime fecha1, DateTime fecha2)
+        public string ListarPublicaciones(DateTime? fecha1, DateTime? fecha2)
         {
-            // Implementación para mostrar publicaciones entre dos fechas
-            return "";
+            string lista = "";
+            if (fecha1 > fecha2)
+            {
+                DateTime? aux = fecha1;
+                fecha1 = fecha2;
+                fecha2 = aux;
+            }
+            foreach (Publicacion unaPublicacion in this._publicaciones)
+            {
+                if (unaPublicacion.FechaPublicacion >= fecha1 && unaPublicacion.FechaPublicacion >= fecha2)
+                    lista += unaPublicacion.ToString() + "\n";
+            }
+            return lista;
         }
 
         public void PrecargarDatos()

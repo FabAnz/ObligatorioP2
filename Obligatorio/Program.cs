@@ -44,6 +44,11 @@ while (seleccion != "0")
             break;
         case "4":
             Console.WriteLine("\nPublicaciones");
+            Console.Write("\nIngrese primer fecha: ");
+            DateTime? primerFecha = SolicitarFecha();
+            Console.Write("Ingrese segunda fecha: ");
+            DateTime? segundaFecha = SolicitarFecha();
+            Console.WriteLine("\n" + sistema.ListarPublicaciones(primerFecha, segundaFecha));
             Console.Write("\nPresione enter para continuar");
             Console.ReadLine();
             break;
@@ -53,6 +58,24 @@ while (seleccion != "0")
             Console.ReadLine();
             break;
     }
+}
+
+static DateTime? SolicitarFecha()
+{
+    bool esCorrecto = false;
+    while (!esCorrecto)
+    {
+        try
+        {
+            DateTime fecha = DateTime.Parse(Console.ReadLine());
+            return fecha;
+        }
+        catch (Exception e)
+        {
+            Console.Write("Formato invalido, vuelva a ingresar: ");
+        }
+    }
+    return null;
 }
 
 static string CampoObligatorio(string mensaje)

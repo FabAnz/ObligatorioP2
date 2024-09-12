@@ -9,3 +9,4 @@ D:\ORT\Programacion 2\Obligatorio 1\Codigo\LogicaNegocio\obj\Debug\net8.0\Logica
 D:\ORT\Programacion 2\Obligatorio 1\Codigo\LogicaNegocio\obj\Debug\net8.0\refint\LogicaNegocio.dll
 D:\ORT\Programacion 2\Obligatorio 1\Codigo\LogicaNegocio\obj\Debug\net8.0\LogicaNegocio.pdb
 D:\ORT\Programacion 2\Obligatorio 1\Codigo\LogicaNegocio\obj\Debug\net8.0\ref\LogicaNegocio.dll
+D:\ORT\Programacion 2\Obligatorio 1\Codigo\LogicaNegocio\obj\Debug\net8.0\LogicaNegocio.sourcelink.json

@@ -59,7 +59,7 @@ namespace LogicaNegocio
 
         public override string ToString()
         {
-            return "";
+            return $"ID: {this._id} {this._nombre}\nEstado: {this._estado}\nFecha de publicacion {this._fechaPublicacion}";
         }
     }
 }
