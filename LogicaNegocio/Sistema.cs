@@ -120,7 +120,7 @@
             }
             foreach (Publicacion unaPublicacion in this._publicaciones)
             {
-                if (unaPublicacion.FechaPublicacion >= fecha1 && unaPublicacion.FechaPublicacion >= fecha2)
+                if (unaPublicacion.FechaPublicacion >= fecha1 && unaPublicacion.FechaPublicacion <= fecha2)
                     lista += unaPublicacion.ToString() + "\n";
             }
             return lista;
@@ -350,6 +350,17 @@
             venta10.AgregarArticulo(BuscarArticuloPorNombre("Sofá"));
             venta10.AgregarArticulo(BuscarArticuloPorNombre("Mesa de comedor"));
 
+            venta1.FechaPublicacion = DateTime.Parse("19-04-2024");
+            venta2.FechaPublicacion = DateTime.Parse("09-09-2024");
+            venta3.FechaPublicacion = DateTime.Parse("23-04-2024");
+            venta4.FechaPublicacion = DateTime.Parse("25-02-2024");
+            venta5.FechaPublicacion = DateTime.Parse("08-07-2024");
+            venta6.FechaPublicacion = DateTime.Parse("11-06-2024");
+            venta7.FechaPublicacion = DateTime.Parse("18-03-2024");
+            venta8.FechaPublicacion = DateTime.Parse("21-07-2024");
+            venta9.FechaPublicacion = DateTime.Parse("07-06-2024");
+            venta10.FechaPublicacion = DateTime.Parse("14-02-2024");
+
             this.AgregarVenta(venta1);
             this.AgregarVenta(venta2);
             this.AgregarVenta(venta3);
@@ -443,6 +454,17 @@
             subasta7.AgregarOferta(oferta6);
             subasta7.AgregarOferta(oferta7);
             subasta7.AgregarOferta(oferta8);
+
+            subasta1.FechaPublicacion = DateTime.Parse("15-03-2024");
+            subasta2.FechaPublicacion = DateTime.Parse("30-08-2024");
+            subasta3.FechaPublicacion = DateTime.Parse("05-05-2024");
+            subasta4.FechaPublicacion = DateTime.Parse("12-04-2024");
+            subasta5.FechaPublicacion = DateTime.Parse("19-06-2024");
+            subasta6.FechaPublicacion = DateTime.Parse("25-07-2024");
+            subasta7.FechaPublicacion = DateTime.Parse("22-04-2024");
+            subasta8.FechaPublicacion = DateTime.Parse("10-06-2024");
+            subasta9.FechaPublicacion = DateTime.Parse("28-05-2024");
+            subasta10.FechaPublicacion = DateTime.Parse("16-02-2024");
 
             this.AgregarSubasta(subasta1);
             this.AgregarSubasta(subasta2);
