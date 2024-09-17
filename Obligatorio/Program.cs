@@ -14,8 +14,11 @@ while (seleccion != "0")
             Console.ReadLine();
             break;
         case "1":
-            Console.WriteLine("\nLista de clientes");
-            Console.WriteLine("\n" + sistema.ListarClientes());
+            Console.WriteLine("\nLista de clientes\n");
+            foreach (Cliente unCliente in sistema.ListarClientes())
+            {
+                Console.WriteLine(unCliente.ToString());
+            }
             Console.Write("\nPresione enter para continuar");
             Console.ReadLine();
             break;

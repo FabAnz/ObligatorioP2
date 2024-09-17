@@ -87,13 +87,13 @@
             }
         }
 
-        public string ListarClientes()
+        public List<Cliente> ListarClientes()
         {
-            string lista = "";
+            List<Cliente> lista = new List<Cliente>();
             foreach (Usuario unCliente in this._usuarios)
             {
                 if (unCliente is Cliente)//GPT
-                    lista += unCliente.ToString() + "\n";
+                    lista.Add((Cliente)unCliente);
             }
             return lista;
         }
