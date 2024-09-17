@@ -98,13 +98,13 @@
             return lista;
         }
 
-        public string ListarArticulos(Categoria categoria)
+        public List<Articulo> ListarArticulos(Categoria categoria)
         {
-            string lista = "";
-            foreach (Articulo unaArticulo in this._articulos)
+            List<Articulo> lista = new List<Articulo>();
+            foreach (Articulo unArticulo in this._articulos)
             {
-                if (unaArticulo.Categoria == categoria)
-                    lista += unaArticulo.ToString() + "\n";
+                if (unArticulo.Categoria == categoria)
+                    lista.Add(unArticulo);
             }
             return lista;
         }

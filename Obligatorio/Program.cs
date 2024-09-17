@@ -25,9 +25,12 @@ while (seleccion != "0")
         case "2":
             Console.WriteLine("\nArticulos");
             Categoria laCategoria = SeleccionarCategoria();
-            Console.WriteLine("\n" + laCategoria);
-            Console.WriteLine("\n" + sistema.ListarArticulos(laCategoria));
-            Console.Write("Presione enter para continuar");
+            Console.WriteLine("\n" + laCategoria + "\n");
+            foreach (Articulo unArticulo2 in sistema.ListarArticulos(laCategoria))
+            {
+                Console.WriteLine(unArticulo2.ToString());
+            }
+            Console.Write("\nPresione enter para continuar");
             Console.ReadLine();
             break;
         case "3":
