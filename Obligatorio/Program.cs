@@ -54,7 +54,10 @@ while (seleccion != "0")
             DateTime? primerFecha = SolicitarFecha();
             Console.Write("Ingrese segunda fecha: ");
             DateTime? segundaFecha = SolicitarFecha();
-            Console.WriteLine("\n" + sistema.ListarPublicaciones(primerFecha, segundaFecha));
+            foreach (Publicacion unaPublicacion in sistema.ListarPublicaciones(primerFecha, segundaFecha))
+            {
+                Console.WriteLine(unaPublicacion.ToString());
+            }
             Console.Write("\nPresione enter para continuar");
             Console.ReadLine();
             break;

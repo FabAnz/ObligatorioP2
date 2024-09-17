@@ -109,9 +109,9 @@
             return lista;
         }
 
-        public string ListarPublicaciones(DateTime? fecha1, DateTime? fecha2)
+        public List<Publicacion> ListarPublicaciones(DateTime? fecha1, DateTime? fecha2)
         {
-            string lista = "";
+            List<Publicacion> lista = new List<Publicacion>();
             if (fecha1 > fecha2)
             {
                 DateTime? aux = fecha1;
@@ -121,7 +121,7 @@
             foreach (Publicacion unaPublicacion in this._publicaciones)
             {
                 if (unaPublicacion.FechaPublicacion >= fecha1 && unaPublicacion.FechaPublicacion <= fecha2)
-                    lista += unaPublicacion.ToString() + "\n";
+                    lista.Add(unaPublicacion);
             }
             return lista;
         }
