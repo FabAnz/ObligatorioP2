@@ -154,14 +154,14 @@ namespace LogicaNegocio
             Cliente cliente9 = new Cliente("Miguel", "Sánchez", "miguel.sanchez@example.com", "safePass456");
             Cliente cliente10 = new Cliente("Sofía", "Castro", "sofia.castro@example.com", "pass654321");
 
-            cliente1.Saldo = 565;
-            cliente2.Saldo = 780;
-            cliente3.Saldo = 1200;
-            cliente4.Saldo = 950;
-            cliente5.Saldo = 340;
-            cliente6.Saldo = 890;
-            cliente7.Saldo = 460;
-            cliente8.Saldo = 720;
+            cliente1.Saldo = 3565;
+            cliente2.Saldo = 9780;
+            cliente3.Saldo = 11200;
+            cliente4.Saldo = 1950;
+            cliente5.Saldo = 1340;
+            cliente6.Saldo = 1890;
+            cliente7.Saldo = 2460;
+            cliente8.Saldo = 7020;
             cliente9.Saldo = 1050;
             cliente10.Saldo = 630;
 
@@ -561,6 +561,30 @@ namespace LogicaNegocio
             {
                 if(unaSubasta.Id == id)
                     return unaSubasta;
+            }
+            return null;
+        }
+
+        //Listar todas las ventas abiertas
+        public List<Venta> ListarVentasAbiertas()
+        {
+            List<Venta> aRetornar = new List<Venta>();
+            //Listar subastas
+            foreach (Publicacion unaVenta in this._publicaciones)
+            {
+                if (unaVenta is Venta && unaVenta.Estado == EstadoPublicacion.Abierta)
+                    aRetornar.Add((Venta)unaVenta);
+            }
+            return aRetornar;
+        }
+
+        //Retornar venta por ID
+        public Venta DevolverVentaAbiertaPorId(int id)
+        {
+            foreach (Venta unaVenta in this.ListarVentasAbiertas())
+            {
+                if (unaVenta.Id == id)
+                    return unaVenta;
             }
             return null;
         }

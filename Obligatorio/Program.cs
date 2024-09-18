@@ -79,20 +79,58 @@ static void OtrasOpciones()
     Sistema sistema = Sistema.Instancia;
     Console.Clear();
     Console.WriteLine("1 - Realizar compra (finalizar venta)");
-    Console.WriteLine("\nPara esta opción loguearse como comprador con las siguientes credenciales");
+    Console.WriteLine("\nPara esta opción loguearse como comprador con las siguientes credenciales\n");
     Console.WriteLine("Email: juan.perez@example.com");
-    Console.WriteLine("Contraseña: pass123");
+    Console.WriteLine("Contraseña: pass123\n");
+    Console.WriteLine("---------------------------------------------------------------------------------------------");
     Console.WriteLine("\n2 - Finalizar subasta");
-    Console.WriteLine("\nPara esta opción loguearse como administrador con las siguientes credenciales");
+    Console.WriteLine("\nPara esta opción loguearse como administrador con las siguientes credenciales\n");
     Console.WriteLine("Email: roberto.suarez@example.com");
-    Console.WriteLine("Contraseña: adminPass123");
+    Console.WriteLine("Contraseña: adminPass123\n");
+    Console.WriteLine("---------------------------------------------------------------------------------------------");
 
     sistema.Login();
 
     //Acceder a las opciones segun el tipo de usuario
     if (!sistema.UsuarioEsAdministrador(sistema.UsuarioActivo))
     {
-        Console.WriteLine("Comprador");
+        Console.Clear();
+        Console.WriteLine("Ventas abiertas\n");
+        foreach (Venta unaVenta in sistema.ListarVentasAbiertas())
+        {
+            Console.WriteLine(unaVenta.ToString() + "\n");
+            Console.WriteLine("-----------------------------------------------------------");
+        }
+
+        //Seleccionar el ID de la lista///////////////////////////////////////////////////////////
+        bool esCorrecto = false;
+        int id = 0;
+        while (!esCorrecto)
+        {
+            try
+            {
+                Console.Write("\nIngrese el ID de la venta: ");
+                id = int.Parse(Console.ReadLine());
+                foreach (Venta unaVenta in sistema.ListarVentasAbiertas())
+                {
+                    if (unaVenta.Id == id)
+                    {
+                        esCorrecto = true;
+                        break;
+                    }
+                }
+                if (!esCorrecto)
+                    Console.WriteLine("\nEl ID seleccionado no esta en la lista");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Solo se aceptan numeros");
+            }
+        }
+        //////////////////////////////////////////////////////////////////////////////////////////
+        sistema.DevolverVentaAbiertaPorId(id).CerrarVenta();
+        
+        Console.Write("\nPresione enter para continuar");
         Console.ReadLine();
     }
     else
