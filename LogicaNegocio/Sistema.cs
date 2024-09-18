@@ -530,5 +530,29 @@ namespace LogicaNegocio
                 return true;
             return false;
         }
+
+        //Listar todas las subastas abiertas
+        public List<Subasta> ListarSubastasAbiertas()
+        {
+            List<Subasta> aRetornar = new List<Subasta>();
+            //Listar subastas
+            foreach (Publicacion unaSubasta in this._publicaciones)
+            {
+                if (unaSubasta is Subasta && unaSubasta.Estado == EstadoPublicacion.Abierta)
+                    aRetornar.Add((Subasta)unaSubasta);
+            }
+            return aRetornar;
+        }
+
+        //Retornar subasta por ID
+        public Subasta DevolverSubastaAbiertaPorId(int id)
+        {
+            foreach(Subasta unaSubasta in this.ListarSubastasAbiertas())
+            {
+                if(unaSubasta.Id == id)
+                    return unaSubasta;
+            }
+            return null;
+        }
     }
 }

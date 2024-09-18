@@ -59,12 +59,21 @@ namespace LogicaNegocio
 
         public override string ToString()
         {
-            return $"ID: {this._id} - {this._nombre}\nEstado: {this._estado}\nFecha de publicacion {this._fechaPublicacion.ToString("dd/MM/yyyy")}\n";//GPT
+            return $"ID: {this._id} - {this._nombre} - " +
+                $"Estado: {this._estado} - " +
+                $"Fecha de publicacion {this._fechaPublicacion.ToString("dd/MM/yyyy")}\n" +
+                $"Datos extra para pruebas de otras opciones\n" +
+                $"Fecha de finalizacion: {this._fechaFinalizacion.ToString("dd/MM/yyyy")} - " +
+                $"Comprador: {this._comprador}";//GPT
         }
 
         public void FinalizarPublicacion(Cliente comprador)
         {
-
+            Sistema sistema = Sistema.Instancia;
+            this._estado = EstadoPublicacion.Cerrada;
+            this._comprador = comprador;
+            this._finalizoCompra = sistema.UsuarioActivo;
+            this._fechaFinalizacion = DateTime.Today;
         }
     }
 }

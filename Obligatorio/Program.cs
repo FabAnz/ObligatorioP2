@@ -56,9 +56,9 @@ while (seleccion != "0")
             DateTime? segundaFecha = SolicitarFecha();
             foreach (Publicacion unaPublicacion in sistema.ListarPublicaciones(primerFecha, segundaFecha))
             {
-                Console.WriteLine(unaPublicacion.ToString());
+                Console.WriteLine(unaPublicacion.ToString() + "\n");
             }
-            Console.Write("\nPresione enter para continuar");
+            Console.Write("Presione enter para continuar");
             Console.ReadLine();
             break;
         case "5":
@@ -89,14 +89,50 @@ static void OtrasOpciones()
     sistema.Login();
 
     //Acceder a las opciones segun el tipo de usuario
-    if (sistema.UsuarioEsAdministrador(sistema.UsuarioActivo))
+    if (!sistema.UsuarioEsAdministrador(sistema.UsuarioActivo))
     {
-        Console.WriteLine("Admin");
+        Console.WriteLine("Comprador");
         Console.ReadLine();
     }
     else
     {
-        Console.WriteLine("Comprador");
+        Console.Clear();
+        Console.WriteLine("Subastas abiertas\n");
+        foreach (Subasta unaSubasta in sistema.ListarSubastasAbiertas())
+        {
+            Console.WriteLine(unaSubasta.ToString());
+        }
+
+        //Seleccionar el ID de la lista///////////////////////////////////////////////////////////
+        bool esCorrecto = false;
+        int id = 0;
+        while (!esCorrecto)
+        {
+            try
+            {
+                Console.Write("\nIngrese el ID de la subasta: ");
+                id = int.Parse(Console.ReadLine());
+                foreach (Subasta unaSubasta in sistema.ListarSubastasAbiertas())
+                {
+                    if (unaSubasta.Id == id)
+                    {
+                        esCorrecto = true;
+                        break;
+                    }
+                }
+                if (!esCorrecto)
+                    Console.WriteLine("\nEl ID seleccionado no esta en la lista");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Solo se aceptan numeros");
+            }
+        }
+        //////////////////////////////////////////////////////////////////////////////////////////
+        sistema.DevolverSubastaAbiertaPorId(id).CerrarSubasta();
+        Console.WriteLine("\nSubasta finalizada");
+
+        Console.Write("\nPresione enter para continuar");
         Console.ReadLine();
     }
 }
