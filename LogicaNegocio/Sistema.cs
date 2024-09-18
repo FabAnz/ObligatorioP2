@@ -1,4 +1,6 @@
-﻿namespace LogicaNegocio
+﻿using System.Linq.Expressions;
+
+namespace LogicaNegocio
 {
     public class Sistema
     {
@@ -6,6 +8,9 @@
         private List<Usuario> _usuarios = new List<Usuario>();
         private List<Articulo> _articulos = new List<Articulo>();
         private List<Publicacion> _publicaciones = new List<Publicacion>();
+
+        //Instacia que guarda el usuario que se loguea en la aplicacion
+        private Usuario _usuarioActivo;
 
         public static Sistema Instancia
         {
@@ -21,6 +26,7 @@
         public List<Usuario> Usuarios { get { return _usuarios; } }
         public List<Articulo> Articulos { get { return _articulos; } }
         public List<Publicacion> Publicaciones { get { return _publicaciones; } }
+        public Usuario UsuarioActivo { get { return _usuarioActivo; } }
 
         private Sistema()
         {
@@ -480,19 +486,49 @@
 
         public Articulo BuscarArticuloPorNombre(string nombre)
         {
-            /*Articulo aRetornar = new Articulo();
-            aRetornar.Nombre = nombre;
-            if (this._articulos.Contains(aRetornar))
-            {
-                int indice = this._articulos.IndexOf(aRetornar);
-                return this._articulos[indice];
-            }*/
-
             foreach (Articulo unArticulo in this._articulos)
             {
                 if (unArticulo.Nombre == nombre) return unArticulo;
             }
             throw new Exception("No existe un articulo con ese nombre");
+        }
+
+        //Verificar credenciales
+        public void Login()
+        {
+            bool esCorrecto = false;
+            while (!esCorrecto)
+            {
+                try
+                {
+                    Console.Write("\nIngrese el email: ");
+                    string email = Console.ReadLine();
+                    Console.Write("Ingrese contraseña: ");
+                    string pass = Console.ReadLine();
+                    foreach (Usuario unUsuario in this._usuarios)
+                    {
+                        if (unUsuario.Email == email && unUsuario.Pass == pass)
+                        {
+                            this._usuarioActivo = unUsuario;
+                            esCorrecto = true;
+                        }
+                    }
+                    if (!esCorrecto)
+                        throw new Exception("Usuario y/o contraseña incorrectos");
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+            }
+        }
+
+        //Verificar si el usuario logueado es comprador o admin
+        public bool UsuarioEsAdministrador(Usuario unUsuario)
+        {
+            if (!(unUsuario is Cliente))
+                return true;
+            return false;
         }
     }
 }

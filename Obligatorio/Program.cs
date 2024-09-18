@@ -61,11 +61,43 @@ while (seleccion != "0")
             Console.Write("\nPresione enter para continuar");
             Console.ReadLine();
             break;
+        case "5":
+            OtrasOpciones();
+            break;
         default:
             Console.WriteLine("\nOpcion inválida");
             Console.Write("\nPresione enter para continuar");
             Console.ReadLine();
             break;
+    }
+}
+
+//Menu que muestra las opciones extras
+static void OtrasOpciones()
+{
+    Sistema sistema = Sistema.Instancia;
+    Console.Clear();
+    Console.WriteLine("1 - Realizar compra (finalizar venta)");
+    Console.WriteLine("\nPara esta opción loguearse como comprador con las siguientes credenciales");
+    Console.WriteLine("Email: juan.perez@example.com");
+    Console.WriteLine("Contraseña: pass123");
+    Console.WriteLine("\n2 - Finalizar subasta");
+    Console.WriteLine("\nPara esta opción loguearse como administrador con las siguientes credenciales");
+    Console.WriteLine("Email: roberto.suarez@example.com");
+    Console.WriteLine("Contraseña: adminPass123");
+
+    sistema.Login();
+
+    //Acceder a las opciones segun el tipo de usuario
+    if (sistema.UsuarioEsAdministrador(sistema.UsuarioActivo))
+    {
+        Console.WriteLine("Admin");
+        Console.ReadLine();
+    }
+    else
+    {
+        Console.WriteLine("Comprador");
+        Console.ReadLine();
     }
 }
 
@@ -111,12 +143,14 @@ static Categoria SeleccionarCategoria()
     return (Categoria)categoria;
 }
 
+
 static void MostrarMenu()
 {
     Console.WriteLine("1 - Listar clientes");
     Console.WriteLine("2 - Listar articulos");
     Console.WriteLine("3 - Crear articulo");
     Console.WriteLine("4 - Listar publicaciones");
+    Console.WriteLine("5 - Otras opciones");
     Console.WriteLine("0 - Salir");
     Console.Write("\nIngrese una opción: ");
 }

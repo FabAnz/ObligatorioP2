@@ -27,5 +27,18 @@ namespace LogicaNegocio
                 throw ex;
             }
         }
+
+        public void CerrarSubasta()
+        {
+            Oferta ofertaGanadora = new Oferta();
+            foreach (Oferta unaOferta in this._ofertas)
+            {
+                if (unaOferta.Monto > ofertaGanadora.Monto && unaOferta.Cliente.SaldoSuficiente(unaOferta.Monto))
+                {
+                    ofertaGanadora = unaOferta;
+                }
+            }
+            this.FinalizarPublicacion(ofertaGanadora.Cliente);
+        }
     }
 }

@@ -61,5 +61,10 @@ namespace LogicaNegocio
         {
             return $"ID: {this._id} - {this._nombre}\nEstado: {this._estado}\nFecha de publicacion {this._fechaPublicacion.ToString("dd/MM/yyyy")}\n";//GPT
         }
+
+        public void FinalizarPublicacion(Cliente comprador)
+        {
+
+        }
     }
 }
