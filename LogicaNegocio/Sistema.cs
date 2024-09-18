@@ -456,10 +456,20 @@ namespace LogicaNegocio
             subasta3.AgregarOferta(oferta3);
             subasta3.AgregarOferta(oferta4);
 
+            subasta5.AgregarOferta(oferta1);
+            subasta5.AgregarOferta(oferta2);
+            subasta5.AgregarOferta(oferta3);
+            subasta5.AgregarOferta(oferta4);
+
             subasta7.AgregarOferta(oferta5);
             subasta7.AgregarOferta(oferta6);
             subasta7.AgregarOferta(oferta7);
             subasta7.AgregarOferta(oferta8);
+
+            subasta9.AgregarOferta(oferta5);
+            subasta9.AgregarOferta(oferta6);
+            subasta9.AgregarOferta(oferta7);
+            subasta9.AgregarOferta(oferta8);
 
             subasta1.FechaPublicacion = DateTime.Parse("15-03-2024");
             subasta2.FechaPublicacion = DateTime.Parse("30-08-2024");

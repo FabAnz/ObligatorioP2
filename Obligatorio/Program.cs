@@ -57,6 +57,7 @@ while (seleccion != "0")
             foreach (Publicacion unaPublicacion in sistema.ListarPublicaciones(primerFecha, segundaFecha))
             {
                 Console.WriteLine(unaPublicacion.ToString() + "\n");
+                Console.WriteLine("-----------------------------------------------------------");
             }
             Console.Write("Presione enter para continuar");
             Console.ReadLine();
@@ -100,7 +101,8 @@ static void OtrasOpciones()
         Console.WriteLine("Subastas abiertas\n");
         foreach (Subasta unaSubasta in sistema.ListarSubastasAbiertas())
         {
-            Console.WriteLine(unaSubasta.ToString());
+            Console.WriteLine(unaSubasta.ToString() + "\n");
+            Console.WriteLine("-----------------------------------------------------------");
         }
 
         //Seleccionar el ID de la lista///////////////////////////////////////////////////////////

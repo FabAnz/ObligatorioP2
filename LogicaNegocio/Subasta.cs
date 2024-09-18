@@ -38,7 +38,16 @@ namespace LogicaNegocio
                     ofertaGanadora = unaOferta;
                 }
             }
-            this.FinalizarPublicacion(ofertaGanadora.Cliente);
+            //En caso de que la subasta no tenga ofertas
+            if (ofertaGanadora.Cliente == null)
+            {
+                Console.Write("\nLa subasta no tuvo ofertas");
+                this.FinalizarPublicacion(null);
+            }
+            else
+            {
+                this.FinalizarPublicacion(ofertaGanadora.Cliente);
+            }
         }
     }
 }
