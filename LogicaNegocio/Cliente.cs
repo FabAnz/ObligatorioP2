@@ -29,5 +29,12 @@ namespace LogicaNegocio
         {
             return $"ID: {this.Id} - {this.Nombre} {this.Apellido}";
         }
+
+        public bool SaldoSuficiente(int precio)
+        {
+            if (this._saldo >= precio)
+                return true;
+            return false;
+        }
     }
 }

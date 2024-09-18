@@ -1,4 +1,6 @@
-﻿namespace LogicaNegocio
+﻿using System.Linq.Expressions;
+
+namespace LogicaNegocio
 {
     public class Sistema
     {
@@ -6,6 +8,9 @@
         private List<Usuario> _usuarios = new List<Usuario>();
         private List<Articulo> _articulos = new List<Articulo>();
         private List<Publicacion> _publicaciones = new List<Publicacion>();
+
+        //Instacia que guarda el usuario que se loguea en la aplicacion
+        private Usuario _usuarioActivo;
 
         public static Sistema Instancia
         {
@@ -21,6 +26,7 @@
         public List<Usuario> Usuarios { get { return _usuarios; } }
         public List<Articulo> Articulos { get { return _articulos; } }
         public List<Publicacion> Publicaciones { get { return _publicaciones; } }
+        public Usuario UsuarioActivo { get { return _usuarioActivo; } }
 
         private Sistema()
         {
@@ -148,14 +154,14 @@
             Cliente cliente9 = new Cliente("Miguel", "Sánchez", "miguel.sanchez@example.com", "safePass456");
             Cliente cliente10 = new Cliente("Sofía", "Castro", "sofia.castro@example.com", "pass654321");
 
-            cliente1.Saldo = 565;
-            cliente2.Saldo = 780;
-            cliente3.Saldo = 1200;
-            cliente4.Saldo = 950;
-            cliente5.Saldo = 340;
-            cliente6.Saldo = 890;
-            cliente7.Saldo = 460;
-            cliente8.Saldo = 720;
+            cliente1.Saldo = 3565;
+            cliente2.Saldo = 9780;
+            cliente3.Saldo = 11200;
+            cliente4.Saldo = 1950;
+            cliente5.Saldo = 1340;
+            cliente6.Saldo = 1890;
+            cliente7.Saldo = 2460;
+            cliente8.Saldo = 7020;
             cliente9.Saldo = 1050;
             cliente10.Saldo = 630;
 
@@ -450,10 +456,20 @@
             subasta3.AgregarOferta(oferta3);
             subasta3.AgregarOferta(oferta4);
 
+            subasta5.AgregarOferta(oferta1);
+            subasta5.AgregarOferta(oferta2);
+            subasta5.AgregarOferta(oferta3);
+            subasta5.AgregarOferta(oferta4);
+
             subasta7.AgregarOferta(oferta5);
             subasta7.AgregarOferta(oferta6);
             subasta7.AgregarOferta(oferta7);
             subasta7.AgregarOferta(oferta8);
+
+            subasta9.AgregarOferta(oferta5);
+            subasta9.AgregarOferta(oferta6);
+            subasta9.AgregarOferta(oferta7);
+            subasta9.AgregarOferta(oferta8);
 
             subasta1.FechaPublicacion = DateTime.Parse("15-03-2024");
             subasta2.FechaPublicacion = DateTime.Parse("30-08-2024");
@@ -480,19 +496,97 @@
 
         public Articulo BuscarArticuloPorNombre(string nombre)
         {
-            /*Articulo aRetornar = new Articulo();
-            aRetornar.Nombre = nombre;
-            if (this._articulos.Contains(aRetornar))
-            {
-                int indice = this._articulos.IndexOf(aRetornar);
-                return this._articulos[indice];
-            }*/
-
             foreach (Articulo unArticulo in this._articulos)
             {
                 if (unArticulo.Nombre == nombre) return unArticulo;
             }
             throw new Exception("No existe un articulo con ese nombre");
+        }
+
+        //Verificar credenciales
+        public void Login()
+        {
+            bool esCorrecto = false;
+            while (!esCorrecto)
+            {
+                try
+                {
+                    Console.Write("\nIngrese el email: ");
+                    string email = Console.ReadLine();
+                    Console.Write("Ingrese contraseña: ");
+                    string pass = Console.ReadLine();
+                    foreach (Usuario unUsuario in this._usuarios)
+                    {
+                        if (unUsuario.Email == email && unUsuario.Pass == pass)
+                        {
+                            this._usuarioActivo = unUsuario;
+                            esCorrecto = true;
+                        }
+                    }
+                    if (!esCorrecto)
+                        throw new Exception("Usuario y/o contraseña incorrectos");
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+            }
+        }
+
+        //Verificar si el usuario logueado es comprador o admin
+        public bool UsuarioEsAdministrador(Usuario unUsuario)
+        {
+            if (!(unUsuario is Cliente))
+                return true;
+            return false;
+        }
+
+        //Listar todas las subastas abiertas
+        public List<Subasta> ListarSubastasAbiertas()
+        {
+            List<Subasta> aRetornar = new List<Subasta>();
+            //Listar subastas
+            foreach (Publicacion unaSubasta in this._publicaciones)
+            {
+                if (unaSubasta is Subasta && unaSubasta.Estado == EstadoPublicacion.Abierta)
+                    aRetornar.Add((Subasta)unaSubasta);
+            }
+            return aRetornar;
+        }
+
+        //Retornar subasta por ID
+        public Subasta DevolverSubastaAbiertaPorId(int id)
+        {
+            foreach(Subasta unaSubasta in this.ListarSubastasAbiertas())
+            {
+                if(unaSubasta.Id == id)
+                    return unaSubasta;
+            }
+            return null;
+        }
+
+        //Listar todas las ventas abiertas
+        public List<Venta> ListarVentasAbiertas()
+        {
+            List<Venta> aRetornar = new List<Venta>();
+            //Listar subastas
+            foreach (Publicacion unaVenta in this._publicaciones)
+            {
+                if (unaVenta is Venta && unaVenta.Estado == EstadoPublicacion.Abierta)
+                    aRetornar.Add((Venta)unaVenta);
+            }
+            return aRetornar;
+        }
+
+        //Retornar venta por ID
+        public Venta DevolverVentaAbiertaPorId(int id)
+        {
+            foreach (Venta unaVenta in this.ListarVentasAbiertas())
+            {
+                if (unaVenta.Id == id)
+                    return unaVenta;
+            }
+            return null;
         }
     }
 }
