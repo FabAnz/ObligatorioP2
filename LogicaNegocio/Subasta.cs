@@ -27,5 +27,27 @@ namespace LogicaNegocio
                 throw ex;
             }
         }
+
+        public void CerrarSubasta()
+        {
+            Oferta ofertaGanadora = new Oferta();
+            foreach (Oferta unaOferta in this._ofertas)
+            {
+                if (unaOferta.Monto > ofertaGanadora.Monto && unaOferta.Cliente.SaldoSuficiente(unaOferta.Monto))
+                {
+                    ofertaGanadora = unaOferta;
+                }
+            }
+            //En caso de que la subasta no tenga ofertas
+            if (ofertaGanadora.Cliente == null)
+            {
+                Console.Write("\nLa subasta no tuvo ofertas");
+                this.FinalizarPublicacion(null);
+            }
+            else
+            {
+                this.FinalizarPublicacion(ofertaGanadora.Cliente);
+            }
+        }
     }
 }
