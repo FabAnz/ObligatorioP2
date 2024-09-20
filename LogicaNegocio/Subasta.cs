@@ -31,6 +31,7 @@ namespace LogicaNegocio
         public void CerrarSubasta()
         {
             Oferta ofertaGanadora = new Oferta();
+            //Cargar a ofertaGanadora la oferta mas alta controlando que el cliente tenga saldo
             foreach (Oferta unaOferta in this._ofertas)
             {
                 if (unaOferta.Monto > ofertaGanadora.Monto && unaOferta.Cliente.SaldoSuficiente(unaOferta.Monto))

@@ -64,6 +64,7 @@ namespace LogicaNegocio
                 $"Fecha de publicacion {this._fechaPublicacion.ToString("dd/MM/yyyy")}";//GPT
         }
 
+        //Metodo para finalizar una publicacion
         public void FinalizarPublicacion(Cliente comprador)
         {
             Sistema sistema = Sistema.Instancia;
