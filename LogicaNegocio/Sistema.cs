@@ -4,7 +4,7 @@ namespace LogicaNegocio
 {
     public class Sistema
     {
-        private static Sistema _instancia;
+        private static Sistema s_instancia;
         private List<Usuario> _usuarios = new List<Usuario>();
         private List<Articulo> _articulos = new List<Articulo>();
         private List<Publicacion> _publicaciones = new List<Publicacion>();
@@ -16,11 +16,11 @@ namespace LogicaNegocio
         {
             get
             {
-                if (_instancia == null)
+                if (s_instancia == null)
                 {
-                    _instancia = new Sistema();
+                    s_instancia = new Sistema();
                 }
-                return _instancia;
+                return s_instancia;
             }
         }
         public List<Usuario> Usuarios { get { return _usuarios; } }
