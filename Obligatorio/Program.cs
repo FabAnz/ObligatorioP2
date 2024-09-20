@@ -128,7 +128,7 @@ static void OtrasOpciones()
             }
         }
         //////////////////////////////////////////////////////////////////////////////////////////
-        sistema.DevolverVentaAbiertaPorId(id).CerrarVenta();
+        sistema.DevolverVentaPorId(id).CerrarVenta();
         
         Console.Write("\nPresione enter para continuar");
         Console.ReadLine();
@@ -169,7 +169,7 @@ static void OtrasOpciones()
             }
         }
         //////////////////////////////////////////////////////////////////////////////////////////
-        sistema.DevolverSubastaAbiertaPorId(id).CerrarSubasta();
+        sistema.DevolverSubastaPorId(id).CerrarSubasta();
         Console.WriteLine("\nSubasta finalizada");
 
         Console.Write("\nPresione enter para continuar");

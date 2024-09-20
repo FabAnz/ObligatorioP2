@@ -9,7 +9,7 @@ namespace LogicaNegocio
         private List<Articulo> _articulos = new List<Articulo>();
         private List<Publicacion> _publicaciones = new List<Publicacion>();
 
-        //Instacia que guarda el usuario que se loguea en la aplicacion
+        //Atributo que guarda el usuario que se loguea en la aplicacion
         private Usuario _usuarioActivo;
 
         public static Sistema Instancia
@@ -37,7 +37,7 @@ namespace LogicaNegocio
         {
             try
             {
-                _usuarios.Add(unCliente);
+                this._usuarios.Add(unCliente);
             }
             catch (Exception ex)
             {
@@ -49,7 +49,7 @@ namespace LogicaNegocio
         {
             try
             {
-                _usuarios.Add(unAdmin);
+                this._usuarios.Add(unAdmin);
             }
             catch (Exception ex)
             {
@@ -61,7 +61,7 @@ namespace LogicaNegocio
         {
             try
             {
-                _articulos.Add(unArticulo);
+                this._articulos.Add(unArticulo);
             }
             catch (Exception ex)
             {
@@ -73,7 +73,7 @@ namespace LogicaNegocio
         {
             try
             {
-                _publicaciones.Add(unaVenta);
+                this._publicaciones.Add(unaVenta);
             }
             catch (Exception ex)
             {
@@ -85,7 +85,7 @@ namespace LogicaNegocio
         {
             try
             {
-                _publicaciones.Add(unaSubasta);
+                this._publicaciones.Add(unaSubasta);
             }
             catch (Exception ex)
             {
@@ -494,6 +494,8 @@ namespace LogicaNegocio
             this.AgregarSubasta(subasta10);
         }
 
+        /*Verifica que el nombre del articulo exista a la hora de hacer la precarga
+        Los nombres de los articulos precargados son unicos*/
         public Articulo BuscarArticuloPorNombre(string nombre)
         {
             foreach (Articulo unArticulo in this._articulos)
@@ -503,7 +505,7 @@ namespace LogicaNegocio
             throw new Exception("No existe un articulo con ese nombre");
         }
 
-        //Verificar credenciales
+        //Verificar credenciales y carga el usuario activo
         public void Login()
         {
             bool esCorrecto = false;
@@ -533,7 +535,7 @@ namespace LogicaNegocio
             }
         }
 
-        //Verificar si el usuario logueado es comprador o admin
+        //Verificar si el usuario logueado es comprador o administrador
         public bool UsuarioEsAdministrador(Usuario unUsuario)
         {
             if (!(unUsuario is Cliente))
@@ -555,7 +557,7 @@ namespace LogicaNegocio
         }
 
         //Retornar subasta por ID
-        public Subasta DevolverSubastaAbiertaPorId(int id)
+        public Subasta DevolverSubastaPorId(int id)
         {
             foreach(Subasta unaSubasta in this.ListarSubastasAbiertas())
             {
@@ -579,7 +581,7 @@ namespace LogicaNegocio
         }
 
         //Retornar venta por ID
-        public Venta DevolverVentaAbiertaPorId(int id)
+        public Venta DevolverVentaPorId(int id)
         {
             foreach (Venta unaVenta in this.ListarVentasAbiertas())
             {
