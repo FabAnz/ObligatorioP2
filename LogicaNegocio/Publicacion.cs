@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LogicaNegocio
 {
-    public class Publicacion
+    public abstract class Publicacion
     {
         private static int s_id = 0;
 

@@ -56,7 +56,7 @@ while (seleccion != "0")
             DateTime? segundaFecha = SolicitarFecha();
             foreach (Publicacion unaPublicacion in sistema.ListarPublicaciones(primerFecha, segundaFecha))
             {
-                Console.WriteLine(unaPublicacion.ToString() + "\n");
+                Console.WriteLine("\n" + unaPublicacion.ToString());
                 Console.WriteLine("-----------------------------------------------------------");
             }
             Console.Write("Presione enter para continuar");
@@ -79,12 +79,12 @@ static void OtrasOpciones()
     Sistema sistema = Sistema.Instancia;
     Console.Clear();
     Console.WriteLine("1 - Realizar compra (finalizar venta)");
-    Console.WriteLine("\nPara esta opción loguearse como comprador con las siguientes credenciales\n");
+    Console.WriteLine("\nPara esta opción loguearse como comprador con las siguientes credenciales o con cualquier comprador precargado\n");
     Console.WriteLine("Email: juan.perez@example.com");
     Console.WriteLine("Contraseña: pass123\n");
     Console.WriteLine("---------------------------------------------------------------------------------------------");
     Console.WriteLine("\n2 - Finalizar subasta");
-    Console.WriteLine("\nPara esta opción loguearse como administrador con las siguientes credenciales\n");
+    Console.WriteLine("\nPara esta opción loguearse como administrador con las siguientes credenciales o con cualquier administrador precargado\n");
     Console.WriteLine("Email: roberto.suarez@example.com");
     Console.WriteLine("Contraseña: adminPass123\n");
     Console.WriteLine("---------------------------------------------------------------------------------------------");
@@ -129,7 +129,7 @@ static void OtrasOpciones()
         }
         //////////////////////////////////////////////////////////////////////////////////////////
         sistema.DevolverVentaPorId(id).CerrarVenta();
-        
+
         Console.Write("\nPresione enter para continuar");
         Console.ReadLine();
     }
