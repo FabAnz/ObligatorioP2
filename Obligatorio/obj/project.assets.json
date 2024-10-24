@@ -32,11 +32,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\ORT\\Programacion 2\\Obligatorio 1\\Codigo\\Obligatorio\\Obligatorio.csproj",
+      "projectUniqueName": "D:\\ORT\\Programacion 2\\Obligatorio 2\\ObligatorioP2\\Obligatorio\\Obligatorio.csproj",
       "projectName": "Obligatorio",
-      "projectPath": "D:\\ORT\\Programacion 2\\Obligatorio 1\\Codigo\\Obligatorio\\Obligatorio.csproj",
+      "projectPath": "D:\\ORT\\Programacion 2\\Obligatorio 2\\ObligatorioP2\\Obligatorio\\Obligatorio.csproj",
       "packagesPath": "C:\\Users\\Fabian\\.nuget\\packages\\",
-      "outputPath": "D:\\ORT\\Programacion 2\\Obligatorio 1\\Codigo\\Obligatorio\\obj\\",
+      "outputPath": "D:\\ORT\\Programacion 2\\Obligatorio 2\\ObligatorioP2\\Obligatorio\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Fabian\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -54,8 +54,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "D:\\ORT\\Programacion 2\\Obligatorio 1\\Codigo\\LogicaNegocio\\LogicaNegocio.csproj": {
-              "projectPath": "D:\\ORT\\Programacion 2\\Obligatorio 1\\Codigo\\LogicaNegocio\\LogicaNegocio.csproj"
+            "D:\\ORT\\Programacion 2\\Obligatorio 2\\ObligatorioP2\\LogicaNegocio\\LogicaNegocio.csproj": {
+              "projectPath": "D:\\ORT\\Programacion 2\\Obligatorio 2\\ObligatorioP2\\LogicaNegocio\\LogicaNegocio.csproj"
             }
           }
         }
