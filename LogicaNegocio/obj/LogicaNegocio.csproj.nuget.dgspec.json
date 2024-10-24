@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\ORT\\Programacion 2\\Obligatorio 1\\Codigo\\LogicaNegocio\\LogicaNegocio.csproj": {}
+    "D:\\ORT\\Programacion 2\\Obligatorio 2\\ObligatorioP2\\LogicaNegocio\\LogicaNegocio.csproj": {}
   },
   "projects": {
-    "D:\\ORT\\Programacion 2\\Obligatorio 1\\Codigo\\LogicaNegocio\\LogicaNegocio.csproj": {
+    "D:\\ORT\\Programacion 2\\Obligatorio 2\\ObligatorioP2\\LogicaNegocio\\LogicaNegocio.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\ORT\\Programacion 2\\Obligatorio 1\\Codigo\\LogicaNegocio\\LogicaNegocio.csproj",
+        "projectUniqueName": "D:\\ORT\\Programacion 2\\Obligatorio 2\\ObligatorioP2\\LogicaNegocio\\LogicaNegocio.csproj",
         "projectName": "LogicaNegocio",
-        "projectPath": "D:\\ORT\\Programacion 2\\Obligatorio 1\\Codigo\\LogicaNegocio\\LogicaNegocio.csproj",
+        "projectPath": "D:\\ORT\\Programacion 2\\Obligatorio 2\\ObligatorioP2\\LogicaNegocio\\LogicaNegocio.csproj",
         "packagesPath": "C:\\Users\\Fabian\\.nuget\\packages\\",
-        "outputPath": "D:\\ORT\\Programacion 2\\Obligatorio 1\\Codigo\\LogicaNegocio\\obj\\",
+        "outputPath": "D:\\ORT\\Programacion 2\\Obligatorio 2\\ObligatorioP2\\LogicaNegocio\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Fabian\\AppData\\Roaming\\NuGet\\NuGet.Config",
