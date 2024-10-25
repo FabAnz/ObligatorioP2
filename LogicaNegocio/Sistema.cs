@@ -117,7 +117,7 @@ namespace LogicaNegocio
             return lista;
         }
 
-        public List<Publicacion> ListarPublicaciones(DateTime? fecha1, DateTime? fecha2)
+        /*public List<Publicacion> ListarPublicaciones(DateTime? fecha1, DateTime? fecha2)
         {
             List<Publicacion> lista = new List<Publicacion>();
             if (fecha1 > fecha2)
@@ -132,7 +132,7 @@ namespace LogicaNegocio
                     lista.Add(unaPublicacion);
             }
             return lista;
-        }
+        }*/
 
         public void PrecargarDatos()
         {
@@ -546,7 +546,7 @@ namespace LogicaNegocio
         }
 
         //Listar todas las subastas abiertas
-        public List<Subasta> ListarSubastasAbiertas()
+        /*public List<Subasta> ListarSubastasAbiertas()
         {
             List<Subasta> aRetornar = new List<Subasta>();
             //Listar subastas
@@ -556,10 +556,10 @@ namespace LogicaNegocio
                     aRetornar.Add((Subasta)unaSubasta);
             }
             return aRetornar;
-        }
+        }*/
 
         //Retornar subasta por ID
-        public Subasta DevolverSubastaPorId(int id)
+        /*public Subasta DevolverSubastaPorId(int id)
         {
             foreach(Subasta unaSubasta in this.ListarSubastasAbiertas())
             {
@@ -567,10 +567,10 @@ namespace LogicaNegocio
                     return unaSubasta;
             }
             return null;
-        }
+        }*/
 
         //Listar todas las ventas abiertas
-        public List<Venta> ListarVentasAbiertas()
+        /*public List<Venta> ListarVentasAbiertas()
         {
             List<Venta> aRetornar = new List<Venta>();
             //Listar subastas
@@ -580,10 +580,10 @@ namespace LogicaNegocio
                     aRetornar.Add((Venta)unaVenta);
             }
             return aRetornar;
-        }
+        }*/
 
         //Retornar venta por ID
-        public Venta DevolverVentaPorId(int id)
+        /*public Venta DevolverVentaPorId(int id)
         {
             foreach (Venta unaVenta in this.ListarVentasAbiertas())
             {
@@ -591,6 +591,6 @@ namespace LogicaNegocio
                     return unaVenta;
             }
             return null;
-        }
+        }*/
     }
 }
