@@ -37,6 +37,7 @@ namespace LogicaNegocio
         {
             try
             {
+                unCliente.Validar();
                 this._usuarios.Add(unCliente);
             }
             catch (Exception ex)
@@ -49,6 +50,7 @@ namespace LogicaNegocio
         {
             try
             {
+                unAdmin.Validar();
                 this._usuarios.Add(unAdmin);
             }
             catch (Exception ex)
@@ -143,13 +145,13 @@ namespace LogicaNegocio
 
         private void PrecargarClientes()
         {
-            Cliente cliente1 = new Cliente("Juan", "Pérez", "juan.perez@example.com", "pass123");
-            Cliente cliente2 = new Cliente("María", "González", "maria.gonzalez@example.com", "password456");
-            Cliente cliente3 = new Cliente("Carlos", "Ramírez", "carlos.ramirez@example.com", "qwerty789");
-            Cliente cliente4 = new Cliente("Ana", "López", "ana.lopez@example.com", "pass987");
-            Cliente cliente5 = new Cliente("Pedro", "Martínez", "pedro.martinez@example.com", "abc123def");
+            Cliente cliente1 = new Cliente("Juan", "Pérez", "juan.perez@example.com", "pass123sdsd");
+            Cliente cliente2 = new Cliente("María", "González", "maria.gonzalez@example.com", "password456sdsd");
+            Cliente cliente3 = new Cliente("Carlos", "Ramírez", "carlos.ramirez@example.com", "qwerty789sdsd");
+            Cliente cliente4 = new Cliente("Ana", "López", "ana.lopez@example.com", "pass987sdsd");
+            Cliente cliente5 = new Cliente("Pedro", "Martínez", "pedro.martinez@example.com", "abc123defsdsd");
             Cliente cliente6 = new Cliente("Laura", "Hernández", "laura.hernandez@example.com", "password321");
-            Cliente cliente7 = new Cliente("Luis", "Rodríguez", "luis.rodriguez@example.com", "1234abcd");
+            Cliente cliente7 = new Cliente("Luis", "Rodríguez", "luis.rodriguez@example.com", "1234abcdsdsd");
             Cliente cliente8 = new Cliente("Elena", "Fernández", "elena.fernandez@example.com", "myPass2024");
             Cliente cliente9 = new Cliente("Miguel", "Sánchez", "miguel.sanchez@example.com", "safePass456");
             Cliente cliente10 = new Cliente("Sofía", "Castro", "sofia.castro@example.com", "pass654321");

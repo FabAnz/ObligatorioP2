@@ -1,0 +1,40 @@
+﻿@using LogicaNegocio
+@model Cliente
+
+<h1>Nuevo Cliente</h1>
+
+<form method="post">
+    <div class="form-group">
+        <label for="Nombre">Nombre</label>
+        <input type="text" name="Nombre" class="form-control" id="Nombre" aria- placeholder="Nombre">
+    </div>
+    <div class="form-group">
+        <label for="Apellido">Apellido</label>
+        <input type="text" name="Apellido" class="form-control" id="Apellido" aria- placeholder="Apellido">
+    </div>
+    <div class="form-group">
+        <label for="Email">Email</label>
+        <input type="email" name="Email" class="form-control" id="Email" aria- placeholder="example@email.com">
+    </div>
+    <div class="form-group">
+        <label for="Pass">Password</label>
+        <input type="password" name="Pass" class="form-control" id="Pass" aria- placeholder="Password">
+    </div>
+
+
+    <button type="submit" class="btn btn-primary">Registrarme</button>
+
+    @if (ViewBag.Exito != null)
+    {
+        <div class="alert alert-success">
+            <p>@ViewBag.Exito</p>
+        </div>
+    }
+
+    @if (ViewBag.Error != null)
+    {
+        <div class="alert alert-danger">
+            <p>@ViewBag.Error</p>
+        </div>
+    }
+</form>
