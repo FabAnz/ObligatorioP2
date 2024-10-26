@@ -64,6 +64,8 @@ namespace LogicaNegocio
                 $"Fecha de publicacion {this._fechaPublicacion.ToString("dd/MM/yyyy")}";//GPT
         }
 
+        public abstract void CerrarPublicacion();
+
         //Metodo para finalizar una publicacion
         public void FinalizarPublicacion(Cliente comprador)
         {
@@ -73,5 +75,7 @@ namespace LogicaNegocio
             this._finalizoCompra = sistema.UsuarioActivo;
             this._fechaFinalizacion = DateTime.Today;
         }
+
+        public abstract int CalcularPrecio();
     }
 }

@@ -28,27 +28,41 @@ namespace LogicaNegocio
             }
         }
 
-        public void CerrarSubasta()
+        //Retorna la oferta ganadora de la subasta
+        public Oferta OfertaGanadora()
         {
-            Oferta ofertaGanadora = new Oferta();
-            //Cargar a ofertaGanadora la oferta mas alta controlando que el cliente tenga saldo
+            Oferta ganadora = new Oferta();
+
+            //Cargar a ganadora la oferta mas alta controlando que el cliente tenga saldo
             foreach (Oferta unaOferta in this._ofertas)
             {
-                if (unaOferta.Monto > ofertaGanadora.Monto && unaOferta.Cliente.SaldoSuficiente(unaOferta.Monto))
+                if (unaOferta.Monto > ganadora.Monto && unaOferta.Cliente.SaldoSuficiente(unaOferta.Monto))
                 {
-                    ofertaGanadora = unaOferta;
+                    ganadora = unaOferta;
                 }
             }
+            return ganadora;
+        }
+
+        public override void CerrarPublicacion()
+        {
+            Oferta ganadora = OfertaGanadora();
+           
             //En caso de que la subasta no tenga ofertas
-            if (ofertaGanadora.Cliente == null)
+            if (ganadora.Cliente == null)
             {
                 Console.Write("\nLa subasta no tuvo ofertas");
                 this.FinalizarPublicacion(null);
             }
             else
             {
-                this.FinalizarPublicacion(ofertaGanadora.Cliente);
+                this.FinalizarPublicacion(ganadora.Cliente);
             }
+        }
+
+        public override int CalcularPrecio()
+        {
+            return OfertaGanadora().Monto;
         }
     }
 }

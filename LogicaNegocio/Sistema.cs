@@ -369,6 +369,11 @@ namespace LogicaNegocio
             venta9.FechaPublicacion = DateTime.Parse("07-06-2024");
             venta10.FechaPublicacion = DateTime.Parse("14-02-2024");
 
+            venta3.Estado = EstadoPublicacion.Cancelada;
+            venta5.Estado = EstadoPublicacion.Cerrada;
+            venta7.Estado = EstadoPublicacion.Cancelada;
+            venta10.Estado = EstadoPublicacion.Cancelada;
+
             this.AgregarVenta(venta1);
             this.AgregarVenta(venta2);
             this.AgregarVenta(venta3);
@@ -483,6 +488,10 @@ namespace LogicaNegocio
             subasta8.FechaPublicacion = DateTime.Parse("10-06-2024");
             subasta9.FechaPublicacion = DateTime.Parse("28-05-2024");
             subasta10.FechaPublicacion = DateTime.Parse("16-02-2024");
+
+            subasta2.Estado = EstadoPublicacion.Cerrada;
+            subasta3.Estado = EstadoPublicacion.Cancelada;
+            subasta5.Estado = EstadoPublicacion.Cerrada;
 
             this.AgregarSubasta(subasta1);
             this.AgregarSubasta(subasta2);

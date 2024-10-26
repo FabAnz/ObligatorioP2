@@ -22,7 +22,7 @@ namespace LogicaNegocio
         }
 
         //Cerrar venta
-        public void CerrarVenta()
+        public override void CerrarPublicacion()
         {
             Sistema sistema = Sistema.Instancia;
             Cliente clienteActivo = (Cliente)sistema.UsuarioActivo;
@@ -40,7 +40,7 @@ namespace LogicaNegocio
         }
 
         //Calcular el precio de la venta
-        public int CalcularPrecio()
+        public override int CalcularPrecio()
         {
             int precio = 0;
             foreach (Articulo unArticulo in this.Articulos)
