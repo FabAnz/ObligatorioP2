@@ -3,6 +3,21 @@
 
 <h1>Publicaciones</h1>
 
+@if (ViewBag.Exito != null)
+{
+    <div class="alert alert-success">
+        <p>@ViewBag.Exito</p>
+    </div>
+}
+
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger">
+        <p>@ViewBag.Error</p>
+    </div>
+}
+
+
 <table class="table">
     <thead>
         <tr>
@@ -23,11 +38,11 @@
                 {
                     if (unaPublicacion is Venta)
                     {
-                        <td><a class="btn btn-primary" href="~/Publicacion/Comprar">Comprar</a></td>
+                        <td><a class="btn btn-primary" href="~/Publicaciones/Comprar/@unaPublicacion.Id">Comprar</a></td>
                     }
                     else
                     {
-                        <td><a class="btn btn-primary" href="~/Publicacion/OfertarSubasta">Ofertar en subasta</a></td>
+                        <td><a class="btn btn-primary" href="~/Publicaciones/OfertarSubasta">Ofertar en subasta</a></td>
                     }
                 }
                 else

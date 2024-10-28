@@ -74,8 +74,9 @@ namespace LogicaNegocio
             this._comprador = comprador;
             this._finalizoCompra = sistema.UsuarioActivo;
             this._fechaFinalizacion = DateTime.Today;
+            comprador.RestarCompraAlSaldo(this.CalcularPrecio());
         }
 
-        public abstract int CalcularPrecio();
+        public abstract double CalcularPrecio();
     }
 }

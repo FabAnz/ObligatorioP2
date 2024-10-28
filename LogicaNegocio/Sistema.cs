@@ -177,6 +177,8 @@ namespace LogicaNegocio
             this.AgregarCliente(cliente8);
             this.AgregarCliente(cliente9);
             this.AgregarCliente(cliente10);
+
+            this._usuarioActivo = cliente1;
         }
 
         private void PrecargarAdministradores()
@@ -568,15 +570,15 @@ namespace LogicaNegocio
         }*/
 
         //Retornar subasta por ID
-        /*public Subasta DevolverSubastaPorId(int id)
+        public Publicacion ObtenerPublicacionPorId(int id)
         {
-            foreach(Subasta unaSubasta in this.ListarSubastasAbiertas())
+            foreach (Publicacion unaPublicacion in this._publicaciones)
             {
-                if(unaSubasta.Id == id)
-                    return unaSubasta;
+                if (unaPublicacion.Id == id)
+                    return unaPublicacion;
             }
             return null;
-        }*/
+        }
 
         //Listar todas las ventas abiertas
         /*public List<Venta> ListarVentasAbiertas()

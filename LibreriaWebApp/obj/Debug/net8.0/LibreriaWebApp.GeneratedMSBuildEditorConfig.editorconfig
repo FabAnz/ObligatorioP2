@@ -18,6 +18,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = D:\ORT\Programacion 2\Obligatorio 2\ObligatorioP2\LibreriaWebApp
 build_property._RazorSourceGeneratorDebug = 
 
+[D:/ORT/Programacion 2/Obligatorio 2/ObligatorioP2/LibreriaWebApp/Views/Publicaciones/Comprar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHVibGljYWNpb25lc1xDb21wcmFyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/ORT/Programacion 2/Obligatorio 2/ObligatorioP2/LibreriaWebApp/Views/Publicaciones/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHVibGljYWNpb25lc1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

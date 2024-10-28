@@ -31,24 +31,23 @@ namespace LogicaNegocio
             if (clienteActivo.SaldoSuficiente(this.CalcularPrecio()))
             {
                 this.FinalizarPublicacion(clienteActivo);
-                Console.WriteLine("\nCompra realizada con exito");
             }
             else
             {
-                Console.WriteLine("\nSaldo insuficiente");
+                throw new Exception($"Su saldo de $ {clienteActivo.Saldo} es insuficiente.");
             }
         }
 
         //Calcular el precio de la venta
-        public override int CalcularPrecio()
+        public override double CalcularPrecio()
         {
-            int precio = 0;
+            double precio = 0;
             foreach (Articulo unArticulo in this.Articulos)
             {
                 precio += unArticulo.PrecioVenta;
             }
             if (this._enOferta)
-                precio *= (80 / 100);
+                precio *= 0.8;
             return precio;
         }
     }
