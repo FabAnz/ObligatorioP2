@@ -26,16 +26,7 @@ namespace LogicaNegocio
         {
             Sistema sistema = Sistema.Instancia;
             Cliente clienteActivo = (Cliente)sistema.UsuarioActivo;
-            
-            //Controlar que el cliente tenga saldo suficiente
-            if (clienteActivo.SaldoSuficiente(this.CalcularPrecio()))
-            {
-                this.FinalizarPublicacion(clienteActivo);
-            }
-            else
-            {
-                throw new Exception($"Su saldo de $ {clienteActivo.Saldo} es insuficiente.");
-            }
+            this.FinalizarPublicacion(clienteActivo);
         }
 
         //Calcular el precio de la venta

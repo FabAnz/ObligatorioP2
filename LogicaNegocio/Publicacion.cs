@@ -70,11 +70,19 @@ namespace LogicaNegocio
         public void FinalizarPublicacion(Cliente comprador)
         {
             Sistema sistema = Sistema.Instancia;
-            this._estado = EstadoPublicacion.Cerrada;
-            this._comprador = comprador;
-            this._finalizoCompra = sistema.UsuarioActivo;
-            this._fechaFinalizacion = DateTime.Today;
-            comprador.RestarCompraAlSaldo(this.CalcularPrecio());
+
+            if (comprador.SaldoSuficiente(this.CalcularPrecio()))
+            {
+                this._estado = EstadoPublicacion.Cerrada;
+                this._comprador = comprador;
+                this._finalizoCompra = sistema.UsuarioActivo;
+                this._fechaFinalizacion = DateTime.Today;
+                comprador.RestarCompraAlSaldo(this.CalcularPrecio());
+            }
+            else
+            {
+                throw new Exception($"Su saldo (${comprador.Saldo}) es insuficiente.");
+            }
         }
 
         public abstract double CalcularPrecio();

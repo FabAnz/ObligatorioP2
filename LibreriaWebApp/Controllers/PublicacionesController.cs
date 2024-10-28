@@ -16,9 +16,16 @@ namespace LibreriaWebApp.Controllers
 
         public IActionResult Comprar(int id)
         {
-            Venta unaVenta = (Venta)sistema.ObtenerPublicacionPorId(id);
-            ViewBag.Articulos = unaVenta.Articulos;
-            return View(unaVenta);
+            try
+            {
+                Venta unaVenta = (Venta)sistema.ObtenerPublicacionPorId(id);
+                ViewBag.Articulos = unaVenta.Articulos;
+                return View(unaVenta);
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Ofertar");
+            }
         }
         [HttpPost]
         public IActionResult Comprar(int id, string mensaje)
@@ -33,6 +40,13 @@ namespace LibreriaWebApp.Controllers
             {
                 return RedirectToAction("Index", new { error = ex.Message });
             }
+        }
+
+        public IActionResult Ofertar(int id)
+        {
+            Subasta unaSubasta = (Subasta)sistema.ObtenerPublicacionPorId(id);
+            //ViewBag.Articulos = unaSubasta.Articulos;
+            return View(unaSubasta);
         }
     }
 }
