@@ -60,7 +60,7 @@ namespace LogicaNegocio
             }
         }
 
-        public override int CalcularPrecio()
+        public override double CalcularPrecio()
         {
             return OfertaGanadora().Monto;
         }

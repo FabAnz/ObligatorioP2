@@ -26,29 +26,19 @@ namespace LogicaNegocio
         {
             Sistema sistema = Sistema.Instancia;
             Cliente clienteActivo = (Cliente)sistema.UsuarioActivo;
-            
-            //Controlar que el cliente tenga saldo suficiente
-            if (clienteActivo.SaldoSuficiente(this.CalcularPrecio()))
-            {
-                this.FinalizarPublicacion(clienteActivo);
-                Console.WriteLine("\nCompra realizada con exito");
-            }
-            else
-            {
-                Console.WriteLine("\nSaldo insuficiente");
-            }
+            this.FinalizarPublicacion(clienteActivo);
         }
 
         //Calcular el precio de la venta
-        public override int CalcularPrecio()
+        public override double CalcularPrecio()
         {
-            int precio = 0;
+            double precio = 0;
             foreach (Articulo unArticulo in this.Articulos)
             {
                 precio += unArticulo.PrecioVenta;
             }
             if (this._enOferta)
-                precio *= (80 / 100);
+                precio *= 0.8;
             return precio;
         }
     }
