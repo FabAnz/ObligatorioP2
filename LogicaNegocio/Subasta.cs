@@ -20,7 +20,8 @@ namespace LogicaNegocio
         {
             try
             {
-                _ofertas.Add(unaOferta);
+                ValidarOferta(unaOferta);
+                this._ofertas.Add(unaOferta);
             }
             catch (Exception ex)
             {
@@ -47,7 +48,7 @@ namespace LogicaNegocio
         public override void CerrarPublicacion()
         {
             Oferta ganadora = OfertaGanadora();
-           
+
             //En caso de que la subasta no tenga ofertas
             if (ganadora.Cliente == null)
             {
@@ -63,6 +64,12 @@ namespace LogicaNegocio
         public override double CalcularPrecio()
         {
             return OfertaGanadora().Monto;
+        }
+
+        public void ValidarOferta(Oferta unaOferta)
+        {
+            if (unaOferta.Monto <= this.CalcularPrecio())
+                throw new Exception($"La oferta debe ser mayor a ${this.CalcularPrecio()}");
         }
     }
 }

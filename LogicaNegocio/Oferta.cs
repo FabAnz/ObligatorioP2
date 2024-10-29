@@ -24,7 +24,7 @@ namespace LogicaNegocio
         {
             Oferta.s_id++;
             this._id = Oferta.s_id;
-            this._fecha = DateTime.Today;
+            this._fecha = DateTime.Now;
         }
 
         public Oferta(Cliente unCliente, int monto)
@@ -33,7 +33,7 @@ namespace LogicaNegocio
             this._id = Oferta.s_id;
             this._cliente = unCliente;
             this._monto = monto;
-            this._fecha = DateTime.Today;
+            this._fecha = DateTime.Now;
         }
     }
 }
