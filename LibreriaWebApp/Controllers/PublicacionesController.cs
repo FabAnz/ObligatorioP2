@@ -18,13 +18,16 @@ namespace LibreriaWebApp.Controllers
         {
             try
             {
-                Venta unaVenta = (Venta)sistema.ObtenerPublicacionPorId(id);
+                Publicacion unaPublicacion = sistema.ObtenerPublicacionPorId(id);
+                if (!(unaPublicacion is Venta))
+                    throw new Exception("Error en el tipo de dato.");
+                Venta unaVenta = (Venta)unaPublicacion;
                 ViewBag.Articulos = unaVenta.Articulos;
                 return View(unaVenta);
             }
             catch (Exception ex)
             {
-                return RedirectToAction("Ofertar");
+                return RedirectToAction("Index", new { error = ex.Message });
             }
         }
         [HttpPost]
@@ -44,9 +47,40 @@ namespace LibreriaWebApp.Controllers
 
         public IActionResult Ofertar(int id)
         {
-            Subasta unaSubasta = (Subasta)sistema.ObtenerPublicacionPorId(id);
-            //ViewBag.Articulos = unaSubasta.Articulos;
-            return View(unaSubasta);
+            try
+            {
+                Publicacion unaPublicacion = sistema.ObtenerPublicacionPorId(id);
+                if (!(unaPublicacion is Subasta))
+                    throw new Exception("Error en el tipo de dato.");
+                Subasta unaSubasta = (Subasta)unaPublicacion;
+                ViewBag.Articulos = unaSubasta.Articulos;
+                return View(unaSubasta);
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Index", new { error = ex.Message });
+
+            }
+        }
+        [HttpPost]
+        public IActionResult Ofertar(int idSubasta, int monto)
+        {
+            try
+            {
+                Subasta unaSubasta = (Subasta)sistema.ObtenerPublicacionPorId(idSubasta);
+                Oferta oferta = new Oferta((Cliente)sistema.UsuarioActivo, monto);
+                unaSubasta.AgregarOferta(oferta);
+                ViewBag.Articulos = unaSubasta.Articulos;
+                ViewBag.Exito = "Oferta realizada con exito.";
+                return View(unaSubasta);
+            }
+            catch (Exception ex)
+            {
+                Subasta unaSubasta = (Subasta)sistema.ObtenerPublicacionPorId(idSubasta);
+                ViewBag.Articulos = unaSubasta.Articulos;
+                ViewBag.Error = ex.Message;
+                return View(unaSubasta);
+            }
         }
     }
 }
