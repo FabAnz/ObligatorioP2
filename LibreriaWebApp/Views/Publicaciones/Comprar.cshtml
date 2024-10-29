@@ -10,9 +10,8 @@
         <p>En oferta</p>
     }
     <p>$ @Model.CalcularPrecio()</p>
-    <form method="post">
+    <form method="post" action="~/Publicaciones/ComprarFinalizar">
         <input type="hidden" value="@Model.Id" name="id" id="id"></input>
-        <input type="hidden" value="Compra realizada con exito." name="mensaje" id="mensaje"></input>
         <button type="submit" class="btn btn-primary">Comprar</button>
     </form>
 

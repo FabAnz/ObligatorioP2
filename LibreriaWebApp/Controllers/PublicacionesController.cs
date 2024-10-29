@@ -28,13 +28,13 @@ namespace LibreriaWebApp.Controllers
             }
         }
         [HttpPost]
-        public IActionResult Comprar(int id, string mensaje)
+        public IActionResult ComprarFinalizar(int id)
         {
             try
             {
                 Venta venta = (Venta)sistema.ObtenerPublicacionPorId(id);
                 venta.CerrarPublicacion();
-                return RedirectToAction("Index", new { exito = mensaje });
+                return RedirectToAction("Index", new { exito = "Compra realizada con exito." });
             }
             catch (Exception ex)
             {
