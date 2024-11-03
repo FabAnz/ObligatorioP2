@@ -25,8 +25,8 @@ namespace LogicaNegocio
         public override void CerrarPublicacion()
         {
             Sistema sistema = Sistema.Instancia;
-            Cliente clienteActivo = (Cliente)sistema.UsuarioActivo;
-            this.FinalizarPublicacion(clienteActivo);
+            //Cliente clienteActivo = (Cliente)sistema.UsuarioActivo;
+            //this.FinalizarPublicacion(clienteActivo);
         }
 
         //Calcular el precio de la venta

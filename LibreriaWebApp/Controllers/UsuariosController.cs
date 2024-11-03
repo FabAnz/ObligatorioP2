@@ -17,10 +17,31 @@ namespace LibreriaWebApp.Controllers
             try
             {
                 sistema.AgregarCliente(unCliente);
-                ViewBag.Exito = "Te registraste con éxito.";
-                return View();
+                return RedirectToAction("Login", new { mensaje = "Te registraste con éxito." });
             }
             catch (Exception ex)
+            {
+                ViewBag.Error = ex.Message;
+                return View();
+            }
+        }
+        public IActionResult Login(string mensaje)
+        {
+            ViewBag.Mensaje = mensaje;
+            return View();
+        }
+
+        [HttpPost]
+
+        public IActionResult Login(string email, string pass)
+        {
+            try
+            {
+                sistema.Login(email, pass);
+                HttpContext.Session.SetString("email", email);
+                return RedirectToAction("Index", "Publicaciones");
+            }
+            catch(Exception ex)
             {
                 ViewBag.Error = ex.Message;
                 return View();

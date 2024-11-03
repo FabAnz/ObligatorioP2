@@ -42,6 +42,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb3NcQ2FyZ2FyU2FsZG8uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/ORT/Programacion 2/Obligatorio 2/ObligatorioP2/LibreriaWebApp/Views/Usuarios/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb3NcTG9naW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/ORT/Programacion 2/Obligatorio 2/ObligatorioP2/LibreriaWebApp/Views/Usuarios/RegistrarCliente.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb3NcUmVnaXN0cmFyQ2xpZW50ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

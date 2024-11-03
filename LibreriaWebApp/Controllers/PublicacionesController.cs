@@ -68,8 +68,8 @@ namespace LibreriaWebApp.Controllers
             try
             {
                 Subasta unaSubasta = (Subasta)sistema.ObtenerPublicacionPorId(idSubasta);
-                Oferta oferta = new Oferta((Cliente)sistema.UsuarioActivo, monto);
-                unaSubasta.AgregarOferta(oferta);
+                //Oferta oferta = new Oferta((Cliente)sistema.UsuarioActivo, monto);
+                //unaSubasta.AgregarOferta(oferta);
                 ViewBag.Articulos = unaSubasta.Articulos;
                 ViewBag.Exito = "Oferta realizada con exito.";
                 return View(unaSubasta);

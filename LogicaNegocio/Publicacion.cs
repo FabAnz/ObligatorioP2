@@ -75,7 +75,7 @@ namespace LogicaNegocio
             {
                 this._estado = EstadoPublicacion.Cerrada;
                 this._comprador = comprador;
-                this._finalizoCompra = sistema.UsuarioActivo;
+                //this._finalizoCompra = sistema.UsuarioActivo;
                 this._fechaFinalizacion = DateTime.Today;
                 comprador.RestarCompraAlSaldo(this.CalcularPrecio());
             }
