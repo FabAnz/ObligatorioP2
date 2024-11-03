@@ -38,6 +38,8 @@ namespace LogicaNegocio
             try
             {
                 unCliente.Validar();
+                if (this.ExisteEmail(unCliente.Email))
+                    throw new Exception("Ya hay un usuario registrado con ese email.");
                 this._usuarios.Add(unCliente);
             }
             catch (Exception ex)
@@ -546,6 +548,16 @@ namespace LogicaNegocio
                     Console.WriteLine(e.Message);
                 }
             }
+        }
+
+        //Verificar si el email ya esta registrado
+        public bool ExisteEmail(string email)
+        {
+            foreach(Usuario unUsuario in this._usuarios)
+            {
+                if(unUsuario.Email.ToLower() == email.ToLower()) return true;
+            }
+            return false;
         }
 
         //Verificar si el usuario logueado es comprador o administrador
