@@ -64,10 +64,10 @@ namespace LogicaNegocio
                 $"Fecha de publicacion {this._fechaPublicacion.ToString("dd/MM/yyyy")}";//GPT
         }
 
-        public abstract void CerrarPublicacion();
+        public abstract void CerrarPublicacion(string email);
 
         //Metodo para finalizar una publicacion
-        public void FinalizarPublicacion(Cliente comprador)
+        public void FinalizarPublicacion(Cliente comprador, Usuario finalizador)
         {
             Sistema sistema = Sistema.Instancia;
 
@@ -75,7 +75,7 @@ namespace LogicaNegocio
             {
                 this._estado = EstadoPublicacion.Cerrada;
                 this._comprador = comprador;
-                //this._finalizoCompra = sistema.UsuarioActivo;
+                this._finalizoCompra = finalizador;
                 this._fechaFinalizacion = DateTime.Today;
                 comprador.RestarCompraAlSaldo(this.CalcularPrecio());
             }

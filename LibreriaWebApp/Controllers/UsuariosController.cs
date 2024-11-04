@@ -17,7 +17,7 @@ namespace LibreriaWebApp.Controllers
             try
             {
                 sistema.AgregarCliente(unCliente);
-                return RedirectToAction("Login", new { mensaje = "Te registraste con éxito." });
+                return RedirectToAction("Login", new { exito = "Te registraste con éxito." });
             }
             catch (Exception ex)
             {
@@ -25,15 +25,16 @@ namespace LibreriaWebApp.Controllers
                 return View();
             }
         }
-        public IActionResult Login(string mensaje)
+        public IActionResult Login(string exito, string error)
         {
-            ViewBag.Mensaje = mensaje;
+            HttpContext.Session.SetString("email", "");
+            ViewBag.Exito = exito;
+            ViewBag.Error = error;
             return View();
         }
 
         [HttpPost]
-
-        public IActionResult Login(string email, string pass)
+        public IActionResult LoginIngresar(string email, string pass)
         {
             try
             {
@@ -41,16 +42,25 @@ namespace LibreriaWebApp.Controllers
                 HttpContext.Session.SetString("email", email);
                 return RedirectToAction("Index", "Publicaciones");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                ViewBag.Error = ex.Message;
-                return View();
+                return RedirectToAction("Login", new { error = ex.Message });
             }
         }
 
         public IActionResult CargarSaldo()
         {
-            return View();
+            try
+            {
+                Usuario usuarioActivo = sistema.ObtenerUsuarioPorEmail(HttpContext.Session.GetString("email"));//Si el email es null manda la excepcion
+                usuarioActivo.VerificarRol(Rol.Cliente);//Verifica que el rol sea el correcto para la accion
+
+                return View();
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Login", new { error = ex.Message });
+            }
         }
 
         [HttpPost]
@@ -58,7 +68,6 @@ namespace LibreriaWebApp.Controllers
         {
             try
             {
-
                 ViewBag.Exito = $"Se agregó $ {monto} a su saldo.";
                 return View();
             }

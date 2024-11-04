@@ -22,11 +22,11 @@ namespace LogicaNegocio
         }
 
         //Cerrar venta
-        public override void CerrarPublicacion()
+        public override void CerrarPublicacion(string email)
         {
             Sistema sistema = Sistema.Instancia;
-            //Cliente clienteActivo = (Cliente)sistema.UsuarioActivo;
-            //this.FinalizarPublicacion(clienteActivo);
+            Cliente clienteActivo = (Cliente)sistema.ObtenerUsuarioPorEmail(email);
+            this.FinalizarPublicacion(clienteActivo, clienteActivo);
         }
 
         //Calcular el precio de la venta

@@ -1,9 +1,9 @@
 ﻿<h1>Login</h1>
 
-@if (ViewBag.Mensaje != null)
+@if (ViewBag.Exito != null)
 {
     <div class="alert alert-success">
-        <p>@ViewBag.Mensaje</p>
+        <p>@ViewBag.Exito</p>
     </div>
 }
 
@@ -14,7 +14,7 @@
     </div>
 }
 
-<form method="post">
+<form method="post" action="~/Usuarios/LoginIngresar">
     <div class="form-group">
         <input type="email" name="Email" class="form-control" id="Email" aria- placeholder="name@example.com">
     </div>
@@ -23,5 +23,5 @@
     </div>
     <button type="submit" class="btn btn-primary">Login</button>
 </form>
-    
+
 <p>¿Aún no tenes cuenta? <a href="~/Usuarios/RegistrarCliente">registrarme</a></p>

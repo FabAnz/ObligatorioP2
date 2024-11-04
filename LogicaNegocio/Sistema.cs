@@ -538,6 +538,17 @@ namespace LogicaNegocio
             return false;
         }
 
+        //Obtener usuario por email
+        public Usuario ObtenerUsuarioPorEmail(string email)
+        {
+            foreach(Usuario unUsuario in this._usuarios)
+            {
+                if(unUsuario.Email == email) 
+                    return unUsuario;
+            }
+            throw new Exception("El usuario no existe.");
+        }
+
         //Verificar si el usuario logueado es comprador o administrador
         public bool UsuarioEsAdministrador(Usuario unUsuario)
         {
