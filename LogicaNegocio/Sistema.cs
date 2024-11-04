@@ -9,9 +9,6 @@ namespace LogicaNegocio
         private List<Articulo> _articulos = new List<Articulo>();
         private List<Publicacion> _publicaciones = new List<Publicacion>();
 
-        //Atributo que guarda el usuario que se loguea en la aplicacion
-        private Usuario _usuarioActivo;
-
         public static Sistema Instancia
         {
             get
@@ -26,7 +23,6 @@ namespace LogicaNegocio
         public List<Usuario> Usuarios { get { return _usuarios; } }
         public List<Articulo> Articulos { get { return _articulos; } }
         public List<Publicacion> Publicaciones { get { return _publicaciones; } }
-        public Usuario UsuarioActivo { get { return _usuarioActivo; } }
 
         private Sistema()
         {
@@ -179,8 +175,6 @@ namespace LogicaNegocio
             this.AgregarCliente(cliente8);
             this.AgregarCliente(cliente9);
             this.AgregarCliente(cliente10);
-
-            this._usuarioActivo = cliente1;
         }
 
         private void PrecargarAdministradores()
@@ -521,43 +515,38 @@ namespace LogicaNegocio
         }
 
         //Verificar credenciales y carga el usuario activo
-        public void Login()
+        public void Login(string email, string pass)
         {
-            bool esCorrecto = false;
-            while (!esCorrecto)
+            if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(pass))
+                throw new Exception("Complete el email y el password.");
+            foreach (Usuario unUsuario in this._usuarios)
             {
-                try
-                {
-                    Console.Write("\nIngrese el email: ");
-                    string email = Console.ReadLine();
-                    Console.Write("Ingrese contraseña: ");
-                    string pass = Console.ReadLine();
-                    foreach (Usuario unUsuario in this._usuarios)
-                    {
-                        if (unUsuario.Email == email && unUsuario.Pass == pass)
-                        {
-                            this._usuarioActivo = unUsuario;
-                            esCorrecto = true;
-                        }
-                    }
-                    if (!esCorrecto)
-                        throw new Exception("Usuario y/o contraseña incorrectos");
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
-                }
+                if (unUsuario.Email.ToLower() == email.ToLower() && unUsuario.Pass == pass)
+                    return;
             }
+            throw new Exception("Usuario y/o contraseña incorrectos");
         }
+
 
         //Verificar si el email ya esta registrado
         public bool ExisteEmail(string email)
         {
-            foreach(Usuario unUsuario in this._usuarios)
+            foreach (Usuario unUsuario in this._usuarios)
             {
-                if(unUsuario.Email.ToLower() == email.ToLower()) return true;
+                if (unUsuario.Email.ToLower() == email.ToLower()) return true;
             }
             return false;
+        }
+
+        //Obtener usuario por email
+        public Usuario ObtenerUsuarioPorEmail(string email)
+        {
+            foreach(Usuario unUsuario in this._usuarios)
+            {
+                if(unUsuario.Email == email) 
+                    return unUsuario;
+            }
+            throw new Exception("El usuario no existe.");
         }
 
         //Verificar si el usuario logueado es comprador o administrador

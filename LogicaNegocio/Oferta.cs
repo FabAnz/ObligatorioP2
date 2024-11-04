@@ -12,12 +12,12 @@ namespace LogicaNegocio
 
         private int _id;
         private Cliente _cliente;
-        private int _monto;
+        private double _monto;
         private DateTime _fecha;
 
         public int Id { get { return _id; } }
         public Cliente Cliente { get { return _cliente; } set { _cliente = value; } }
-        public int Monto { get { return _monto; } set { _monto = value; } }
+        public double Monto { get { return _monto; } set { _monto = value; } }
         public DateTime Fecha { get { return _fecha; } set { _fecha = value; } }
 
         public Oferta()
@@ -27,7 +27,7 @@ namespace LogicaNegocio
             this._fecha = DateTime.Now;
         }
 
-        public Oferta(Cliente unCliente, int monto)
+        public Oferta(Cliente unCliente, double monto)
         {
             Oferta.s_id++;
             this._id = Oferta.s_id;

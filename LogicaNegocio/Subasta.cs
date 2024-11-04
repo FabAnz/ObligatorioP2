@@ -45,19 +45,20 @@ namespace LogicaNegocio
             return ganadora;
         }
 
-        public override void CerrarPublicacion()
+        public override void CerrarPublicacion(string email)
         {
+            Sistema sistema = Sistema.Instancia;
             Oferta ganadora = OfertaGanadora();
 
             //En caso de que la subasta no tenga ofertas
             if (ganadora.Cliente == null)
             {
                 Console.Write("\nLa subasta no tuvo ofertas");
-                this.FinalizarPublicacion(null);
+                this.FinalizarPublicacion(null, null);
             }
             else
             {
-                this.FinalizarPublicacion(ganadora.Cliente);
+                this.FinalizarPublicacion(ganadora.Cliente, sistema.ObtenerUsuarioPorEmail(email));
             }
         }
 
