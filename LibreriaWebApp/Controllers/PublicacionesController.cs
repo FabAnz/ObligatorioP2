@@ -6,12 +6,18 @@ namespace LibreriaWebApp.Controllers
     public class PublicacionesController : Controller
     {
         private Sistema sistema = Sistema.Instancia;
+
+        private Usuario UsuarioActivo()
+        {
+            return sistema.ObtenerUsuarioPorEmail(HttpContext.Session.GetString("email"));
+        }
+
         public IActionResult Index(string exito, string error)
         {
             try
             {
-                Usuario usuarioActivo = sistema.ObtenerUsuarioPorEmail(HttpContext.Session.GetString("email"));//Si el email es null manda la excepcion
-                usuarioActivo.VerificarRol(Rol.Cliente);//Verifica que el rol sea el correcto para la accion
+                //Verifica que el rol sea el correcto para la accion, ademas si el usuario es null manda excepcion
+                this.UsuarioActivo().VerificarRol(Rol.Cliente);
 
                 ViewBag.Exito = exito;
                 ViewBag.Error = error;
@@ -28,8 +34,8 @@ namespace LibreriaWebApp.Controllers
         {
             try
             {
-                Usuario usuarioActivo = sistema.ObtenerUsuarioPorEmail(HttpContext.Session.GetString("email"));//Si el email es null manda la excepcion
-                usuarioActivo.VerificarRol(Rol.Cliente);//Verifica que el rol sea el correcto para la accion
+                //Verifica que el rol sea el correcto para la accion, ademas si el usuario es null manda excepcion
+                this.UsuarioActivo().VerificarRol(Rol.Cliente);
 
                 Publicacion unaPublicacion = sistema.ObtenerPublicacionPorId(id);
 
@@ -67,8 +73,8 @@ namespace LibreriaWebApp.Controllers
         {
             try
             {
-                Usuario usuarioActivo = sistema.ObtenerUsuarioPorEmail(HttpContext.Session.GetString("email"));//Si el email es null manda la excepcion
-                usuarioActivo.VerificarRol(Rol.Cliente);//Verifica que el rol sea el correcto para la accion
+                //Verifica que el rol sea el correcto para la accion, ademas si el usuario es null manda excepcion
+                this.UsuarioActivo().VerificarRol(Rol.Cliente);
 
                 Publicacion unaPublicacion = sistema.ObtenerPublicacionPorId(id);
                 if (!(unaPublicacion is Subasta))
@@ -89,7 +95,8 @@ namespace LibreriaWebApp.Controllers
             try
             {
                 Subasta unaSubasta = (Subasta)sistema.ObtenerPublicacionPorId(idSubasta);
-                Oferta oferta = new Oferta((Cliente)sistema.ObtenerUsuarioPorEmail(HttpContext.Session.GetString("email")), monto);
+                Cliente unCliente = this.UsuarioActivo() as Cliente;
+                Oferta oferta = new Oferta(unCliente, monto);
                 unaSubasta.AgregarOferta(oferta);
                 ViewBag.Articulos = unaSubasta.Articulos;
                 ViewBag.Exito = "Oferta realizada con exito.";

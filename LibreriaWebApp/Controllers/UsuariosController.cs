@@ -6,6 +6,11 @@ namespace LibreriaWebApp.Controllers
     public class UsuariosController : Controller
     {
         private Sistema sistema = Sistema.Instancia;
+
+        private Usuario UsuarioActivo()
+        {
+            return sistema.ObtenerUsuarioPorEmail(HttpContext.Session.GetString("email"));
+        }
         public IActionResult RegistrarCliente()
         {
             return View();
@@ -52,9 +57,9 @@ namespace LibreriaWebApp.Controllers
         {
             try
             {
-                Usuario usuarioActivo = sistema.ObtenerUsuarioPorEmail(HttpContext.Session.GetString("email"));//Si el email es null manda la excepcion
-                usuarioActivo.VerificarRol(Rol.Cliente);//Verifica que el rol sea el correcto para la accion
-
+                //Verifica que el rol sea el correcto para la accion, ademas si el usuario es null manda excepcion
+                this.UsuarioActivo().VerificarRol(Rol.Cliente);
+                                
                 return View();
             }
             catch (Exception ex)
@@ -68,6 +73,8 @@ namespace LibreriaWebApp.Controllers
         {
             try
             {
+                Cliente unCliente = this.UsuarioActivo() as Cliente;
+                unCliente.CargarSaldo(monto);
                 ViewBag.Exito = $"Se agregó $ {monto} a su saldo.";
                 return View();
             }
