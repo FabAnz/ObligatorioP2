@@ -44,5 +44,13 @@ namespace LogicaNegocio
         {
             this._saldo -= precio;
         }
+
+        //Cargar saldo a la cuenta
+        public void CargarSaldo(double monto)
+        {
+            if (monto <= 0)
+                throw new Exception("El monto debe ser mayor a $ 0.");
+            this._saldo += monto;
+        }
     }
 }
