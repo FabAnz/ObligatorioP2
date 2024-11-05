@@ -1,4 +1,4 @@
-### (En proceso)
+### (Desarrollo en proceso)
 
 ## Punto 1: Diseño
 
