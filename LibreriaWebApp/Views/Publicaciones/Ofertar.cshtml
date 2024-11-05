@@ -1,0 +1,62 @@
+﻿@using LogicaNegocio;
+@model Subasta;
+
+@if (Model.Estado == EstadoPublicacion.Abierta)
+{
+    <h1>@Model.Nombre</h1>
+    <p>Publicado el @Model.FechaPublicacion</p>
+    @if (Model.CalcularPrecio() == 0)
+    {
+        <p>Aún no hay ofertas</p>
+    }
+    <p>$ @Model.CalcularPrecio() es la oferta mas alta</p>
+    <form method="post">
+        <input type="hidden" value="@Model.Id" name="idSubasta" id="idSubasta"></input>
+        <div class="form-group">
+            <label for="Monto">Monto</label>
+            <input type="number" name="Monto" class="form-control" id="Monto" aria- placeholder="$">
+        </div>
+        <a href="~/Publicaciones/Index" class="btn btn-secondary">Volver</a>
+        <button type="submit" class="btn btn-primary">Ofertar</button>
+    </form>
+
+    @if (ViewBag.Exito != null)
+    {
+        <div class="alert alert-success">
+            <p>@ViewBag.Exito</p>
+        </div>
+    }
+
+    @if (ViewBag.Error != null)
+    {
+        <div class="alert alert-danger">
+            <p>@ViewBag.Error</p>
+        </div>
+    }
+
+    <h2>Articulos</h2>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">Categoria</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Articulo unArticulo in ViewBag.Articulos)
+            {
+                <tr>
+                    <th scope="row">@unArticulo.Nombre</th>
+                    <td>@unArticulo.Categoria</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="alert alert-danger">
+        <p>Esta subasta no está disponible.</p>
+    </div>
+}

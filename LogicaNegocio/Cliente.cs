@@ -8,9 +8,9 @@ namespace LogicaNegocio
 {
     public class Cliente : Usuario
     {
-        private int _saldo;
+        private double _saldo;
 
-        public int Saldo { get { return _saldo; } set { _saldo = value; } }
+        public double Saldo { get { return _saldo; } set { _saldo = value; } }
 
         public Cliente() : base()
         {
@@ -25,18 +25,27 @@ namespace LogicaNegocio
             this._saldo = 0;
         }
 
-        public override string ToString()
-        {
-            return $"ID: {this.Id} - {this.Nombre} {this.Apellido}";
-        }
-
         /*Controla si el cliente tiene el saldo suficiente para cerrar una compra
         o para que le validen una oferta en una subasta*/
-        public bool SaldoSuficiente(int precio)
+        public bool SaldoSuficiente(double precio)
         {
             if (this._saldo >= precio)
                 return true;
             return false;
+        }
+
+        //Resta resta al saldo el costo de una compra realizada o de una subasta adjudicada
+        public void RestarCompraAlSaldo(double precio)
+        {
+            this._saldo -= precio;
+        }
+
+        //Cargar saldo a la cuenta
+        public void CargarSaldo(double monto)
+        {
+            if (monto <= 0)
+                throw new Exception("El monto debe ser mayor a $ 0.");
+            this._saldo += monto;
         }
     }
 }

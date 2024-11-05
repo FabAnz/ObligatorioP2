@@ -1,0 +1,58 @@
+﻿@using LogicaNegocio;
+@model Subasta;
+
+<h1>@Model.Nombre</h1>
+<p>Publicado el @Model.FechaPublicacion.ToString("dd MMM yyyy")</p>
+
+<p>Oferta valida más alta $ @Model.CalcularPrecio()</p>
+<form method="post" action="~/Subastas/CerrarFinalizar">
+    <input type="hidden" value="@Model.Id" name="id" id="id"></input>
+    <a href="~/Subastas/Index" class="btn btn-secondary">Volver</a>
+    <button type="submit" class="btn btn-primary">Cerrar</button>
+</form>
+
+<h2>Articulos</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Categoria</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Articulo unArticulo in ViewBag.Articulos)
+        {
+            <tr>
+                <th scope="row">@unArticulo.Nombre</th>
+                <td>@unArticulo.Categoria</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h2>Ofertas</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Cliente</th>
+            <th scope="col">Oferta</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Oferta unaOferta in ViewBag.Ofertas)
+        {
+            <tr>
+                <th scope="row">@unaOferta.Cliente.Email</th>
+                <td>$ @unaOferta.Monto</td>
+                <td>@if(!unaOferta.Cliente.SaldoSuficiente(unaOferta.Monto))
+                    {
+                        <span>(Saldo insuficiente)</span>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

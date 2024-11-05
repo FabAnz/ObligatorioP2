@@ -1,0 +1,25 @@
+﻿<h1>Cargar saldo</h1>
+<h2>Saldo actual $ @ViewBag.Saldo</h2>
+
+<form method="post">
+    <div class="form-group">
+        <label for="Monto">Monto</label>
+        <input type="number" name="Monto" class="form-control" id="Monto" aria- placeholder="$">
+    </div>
+    <a href="~/Publicaciones/Index" class="btn btn-secondary">Volver</a>
+    <button type="submit" class="btn btn-primary">Cargar</button>
+</form>
+
+@if (ViewBag.Exito != null)
+{
+    <div class="alert alert-success">
+        <p>@ViewBag.Exito</p>
+    </div>
+}
+
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger">
+        <p>@ViewBag.Error</p>
+    </div>
+}

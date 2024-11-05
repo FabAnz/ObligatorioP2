@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LogicaNegocio
 {
-    public class Subasta : Publicacion
+    public class Subasta : Publicacion, IComparable<Subasta>
     {
         private List<Oferta> _ofertas = new List<Oferta>();
 
@@ -20,7 +20,9 @@ namespace LogicaNegocio
         {
             try
             {
-                _ofertas.Add(unaOferta);
+                ValidarOferta(unaOferta);
+                this._ofertas.Add(unaOferta);
+                this._ofertas.Sort();
             }
             catch (Exception ex)
             {
@@ -28,27 +30,44 @@ namespace LogicaNegocio
             }
         }
 
-        public void CerrarSubasta()
+        //Retorna la oferta ganadora de la subasta
+        public Oferta OfertaGanadora()
         {
-            Oferta ofertaGanadora = new Oferta();
-            //Cargar a ofertaGanadora la oferta mas alta controlando que el cliente tenga saldo
+            Oferta ganadora = new Oferta();
+
+            //Cargar a ganadora la oferta mas alta controlando que el cliente tenga saldo
             foreach (Oferta unaOferta in this._ofertas)
             {
-                if (unaOferta.Monto > ofertaGanadora.Monto && unaOferta.Cliente.SaldoSuficiente(unaOferta.Monto))
+                if (unaOferta.Monto > ganadora.Monto && unaOferta.Cliente.SaldoSuficiente(unaOferta.Monto))
                 {
-                    ofertaGanadora = unaOferta;
+                    ganadora = unaOferta;
                 }
             }
-            //En caso de que la subasta no tenga ofertas
-            if (ofertaGanadora.Cliente == null)
-            {
-                Console.Write("\nLa subasta no tuvo ofertas");
-                this.FinalizarPublicacion(null);
-            }
-            else
-            {
-                this.FinalizarPublicacion(ofertaGanadora.Cliente);
-            }
+            return ganadora;
+        }
+
+        public override void CerrarPublicacion(string email)
+        {
+            Sistema sistema = Sistema.Instancia;
+            Oferta ganadora = OfertaGanadora();
+                        
+            this.FinalizarPublicacion(ganadora.Cliente, sistema.ObtenerUsuarioPorEmail(email));
+        }
+
+        public override double CalcularPrecio()
+        {
+            return OfertaGanadora().Monto;
+        }
+
+        public void ValidarOferta(Oferta unaOferta)
+        {
+            if (unaOferta.Monto <= this.CalcularPrecio())
+                throw new Exception($"La oferta debe ser mayor a ${this.CalcularPrecio()}");
+        }
+
+        public int CompareTo(Subasta? other)
+        {
+            return this.FechaPublicacion.CompareTo(other.FechaPublicacion);
         }
     }
 }

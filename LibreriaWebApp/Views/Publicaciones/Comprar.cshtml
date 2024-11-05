@@ -1,0 +1,34 @@
+﻿@using LogicaNegocio;
+@model Venta;
+
+<h1>@Model.Nombre</h1>
+<p>Publicado el @Model.FechaPublicacion.ToString("dd MMM yyyy")</p>
+@if (Model.EnOferta)
+{
+    <p>En oferta</p>
+}
+<p>$ @Model.CalcularPrecio()</p>
+<form method="post" action="~/Publicaciones/ComprarFinalizar">
+    <input type="hidden" value="@Model.Id" name="id" id="id"></input>
+    <button type="submit" class="btn btn-primary">Comprar</button>
+</form>
+
+<h2>Articulos</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Categoria</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Articulo unArticulo in ViewBag.Articulos)
+        {
+            <tr>
+                <th scope="row">@unArticulo.Nombre</th>
+                <td>@unArticulo.Categoria</td>
+            </tr>
+        }
+    </tbody>
+</table>

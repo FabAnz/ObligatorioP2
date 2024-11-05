@@ -57,21 +57,33 @@ namespace LogicaNegocio
             }
         }
 
-        public override string ToString()
-        {
-            return $"ID: {this._id} - {this._nombre}\n" +
-                $"Estado: {this._estado}\n" +
-                $"Fecha de publicacion {this._fechaPublicacion.ToString("dd/MM/yyyy")}";//GPT
-        }
+        public abstract void CerrarPublicacion(string email);
 
         //Metodo para finalizar una publicacion
-        public void FinalizarPublicacion(Cliente comprador)
+        public void FinalizarPublicacion(Cliente comprador, Usuario finalizador)
         {
             Sistema sistema = Sistema.Instancia;
-            this._estado = EstadoPublicacion.Cerrada;
-            this._comprador = comprador;
-            this._finalizoCompra = sistema.UsuarioActivo;
-            this._fechaFinalizacion = DateTime.Today;
+
+            if (comprador == null)
+            {
+                this._estado = EstadoPublicacion.Cerrada;
+                this._finalizoCompra = finalizador;
+                this._fechaFinalizacion = DateTime.Today;
+            }
+            else if (comprador.SaldoSuficiente(this.CalcularPrecio()))
+            {
+                this._estado = EstadoPublicacion.Cerrada;
+                this._finalizoCompra = finalizador;
+                this._fechaFinalizacion = DateTime.Now;
+                this._comprador = comprador;
+                comprador.RestarCompraAlSaldo(this.CalcularPrecio());
+            }
+            else
+            {
+                throw new Exception($"Su saldo (${comprador.Saldo}) es insuficiente.");
+            }
         }
+
+        public abstract double CalcularPrecio();
     }
 }

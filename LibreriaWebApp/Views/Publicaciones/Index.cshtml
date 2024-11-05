@@ -1,0 +1,55 @@
+﻿@using LogicaNegocio;
+@model List<Publicacion>;
+
+<h1>Publicaciones</h1>
+
+@if (ViewBag.Exito != null)
+{
+    <div class="alert alert-success">
+        <p>@ViewBag.Exito</p>
+    </div>
+}
+
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger">
+        <p>@ViewBag.Error</p>
+    </div>
+}
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Estado</th>
+            <th scope="col">Precio</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Publicacion unaPublicacion in Model)
+        {
+            <tr>
+                <th scope="row">@unaPublicacion.Nombre</th>
+                <td>@unaPublicacion.Estado</td>
+                <td>$ @unaPublicacion.CalcularPrecio()</td>
+                @if (unaPublicacion.Estado == EstadoPublicacion.Abierta)
+                {
+                    if (unaPublicacion is Venta)
+                    {
+                        <td><a class="btn btn-primary" href="~/Publicaciones/Comprar/@unaPublicacion.Id">Comprar</a></td>
+                    }
+                    else
+                    {
+                        <td><a class="btn btn-primary" href="~/Publicaciones/Ofertar/@unaPublicacion.Id">Ofertar en subasta</a></td>
+                    }
+                }
+                else
+                {
+                    <td></td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>

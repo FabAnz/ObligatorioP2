@@ -9,9 +9,6 @@ namespace LogicaNegocio
         private List<Articulo> _articulos = new List<Articulo>();
         private List<Publicacion> _publicaciones = new List<Publicacion>();
 
-        //Atributo que guarda el usuario que se loguea en la aplicacion
-        private Usuario _usuarioActivo;
-
         public static Sistema Instancia
         {
             get
@@ -26,7 +23,6 @@ namespace LogicaNegocio
         public List<Usuario> Usuarios { get { return _usuarios; } }
         public List<Articulo> Articulos { get { return _articulos; } }
         public List<Publicacion> Publicaciones { get { return _publicaciones; } }
-        public Usuario UsuarioActivo { get { return _usuarioActivo; } }
 
         private Sistema()
         {
@@ -37,6 +33,9 @@ namespace LogicaNegocio
         {
             try
             {
+                unCliente.Validar();
+                if (this.ExisteEmail(unCliente.Email))
+                    throw new Exception("Ya hay un usuario registrado con ese email.");
                 this._usuarios.Add(unCliente);
             }
             catch (Exception ex)
@@ -49,6 +48,7 @@ namespace LogicaNegocio
         {
             try
             {
+                unAdmin.Validar();
                 this._usuarios.Add(unAdmin);
             }
             catch (Exception ex)
@@ -93,45 +93,6 @@ namespace LogicaNegocio
             }
         }
 
-        public List<Cliente> ListarClientes()
-        {
-            List<Cliente> lista = new List<Cliente>();
-            foreach (Usuario unCliente in this._usuarios)
-            {
-                if (unCliente is Cliente)//GPT
-                    lista.Add((Cliente)unCliente);
-            }
-            return lista;
-        }
-
-        public List<Articulo> ListarArticulos(Categoria categoria)
-        {
-            List<Articulo> lista = new List<Articulo>();
-            foreach (Articulo unArticulo in this._articulos)
-            {
-                if (unArticulo.Categoria == categoria)
-                    lista.Add(unArticulo);
-            }
-            return lista;
-        }
-
-        public List<Publicacion> ListarPublicaciones(DateTime? fecha1, DateTime? fecha2)
-        {
-            List<Publicacion> lista = new List<Publicacion>();
-            if (fecha1 > fecha2)
-            {
-                DateTime? aux = fecha1;
-                fecha1 = fecha2;
-                fecha2 = aux;
-            }
-            foreach (Publicacion unaPublicacion in this._publicaciones)
-            {
-                if (unaPublicacion.FechaPublicacion >= fecha1 && unaPublicacion.FechaPublicacion <= fecha2)
-                    lista.Add(unaPublicacion);
-            }
-            return lista;
-        }
-
         public void PrecargarDatos()
         {
             this.PrecargarClientes();
@@ -143,13 +104,13 @@ namespace LogicaNegocio
 
         private void PrecargarClientes()
         {
-            Cliente cliente1 = new Cliente("Juan", "Pérez", "juan.perez@example.com", "pass123");
-            Cliente cliente2 = new Cliente("María", "González", "maria.gonzalez@example.com", "password456");
-            Cliente cliente3 = new Cliente("Carlos", "Ramírez", "carlos.ramirez@example.com", "qwerty789");
-            Cliente cliente4 = new Cliente("Ana", "López", "ana.lopez@example.com", "pass987");
-            Cliente cliente5 = new Cliente("Pedro", "Martínez", "pedro.martinez@example.com", "abc123def");
+            Cliente cliente1 = new Cliente("Juan", "Pérez", "juan.perez@example.com", "pass123sdsd");
+            Cliente cliente2 = new Cliente("María", "González", "maria.gonzalez@example.com", "password456sdsd");
+            Cliente cliente3 = new Cliente("Carlos", "Ramírez", "carlos.ramirez@example.com", "qwerty789sdsd");
+            Cliente cliente4 = new Cliente("Ana", "López", "ana.lopez@example.com", "pass987sdsd");
+            Cliente cliente5 = new Cliente("Pedro", "Martínez", "pedro.martinez@example.com", "abc123defsdsd");
             Cliente cliente6 = new Cliente("Laura", "Hernández", "laura.hernandez@example.com", "password321");
-            Cliente cliente7 = new Cliente("Luis", "Rodríguez", "luis.rodriguez@example.com", "1234abcd");
+            Cliente cliente7 = new Cliente("Luis", "Rodríguez", "luis.rodriguez@example.com", "1234abcdsdsd");
             Cliente cliente8 = new Cliente("Elena", "Fernández", "elena.fernandez@example.com", "myPass2024");
             Cliente cliente9 = new Cliente("Miguel", "Sánchez", "miguel.sanchez@example.com", "safePass456");
             Cliente cliente10 = new Cliente("Sofía", "Castro", "sofia.castro@example.com", "pass654321");
@@ -367,6 +328,11 @@ namespace LogicaNegocio
             venta9.FechaPublicacion = DateTime.Parse("07-06-2024");
             venta10.FechaPublicacion = DateTime.Parse("14-02-2024");
 
+            venta3.Estado = EstadoPublicacion.Cancelada;
+            venta5.Estado = EstadoPublicacion.Cerrada;
+            venta7.Estado = EstadoPublicacion.Cancelada;
+            venta10.Estado = EstadoPublicacion.Cancelada;
+
             this.AgregarVenta(venta1);
             this.AgregarVenta(venta2);
             this.AgregarVenta(venta3);
@@ -482,6 +448,10 @@ namespace LogicaNegocio
             subasta9.FechaPublicacion = DateTime.Parse("28-05-2024");
             subasta10.FechaPublicacion = DateTime.Parse("16-02-2024");
 
+            subasta2.Estado = EstadoPublicacion.Cerrada;
+            subasta3.Estado = EstadoPublicacion.Cancelada;
+            subasta5.Estado = EstadoPublicacion.Cerrada;
+
             this.AgregarSubasta(subasta1);
             this.AgregarSubasta(subasta2);
             this.AgregarSubasta(subasta3);
@@ -506,87 +476,61 @@ namespace LogicaNegocio
         }
 
         //Verificar credenciales y carga el usuario activo
-        public void Login()
+        public void Login(string email, string pass)
         {
-            bool esCorrecto = false;
-            while (!esCorrecto)
+            if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(pass))
+                throw new Exception("Complete el email y el password.");
+            foreach (Usuario unUsuario in this._usuarios)
             {
-                try
-                {
-                    Console.Write("\nIngrese el email: ");
-                    string email = Console.ReadLine();
-                    Console.Write("Ingrese contraseña: ");
-                    string pass = Console.ReadLine();
-                    foreach (Usuario unUsuario in this._usuarios)
-                    {
-                        if (unUsuario.Email == email && unUsuario.Pass == pass)
-                        {
-                            this._usuarioActivo = unUsuario;
-                            esCorrecto = true;
-                        }
-                    }
-                    if (!esCorrecto)
-                        throw new Exception("Usuario y/o contraseña incorrectos");
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
-                }
+                if (unUsuario.Email.ToLower() == email.ToLower() && unUsuario.Pass == pass)
+                    return;
             }
+            throw new Exception("Usuario y/o contraseña incorrectos");
         }
 
-        //Verificar si el usuario logueado es comprador o administrador
-        public bool UsuarioEsAdministrador(Usuario unUsuario)
+
+        //Verificar si el email ya esta registrado
+        public bool ExisteEmail(string email)
         {
-            if (!(unUsuario is Cliente))
-                return true;
+            foreach (Usuario unUsuario in this._usuarios)
+            {
+                if (unUsuario.Email.ToLower() == email.ToLower()) return true;
+            }
             return false;
         }
 
-        //Listar todas las subastas abiertas
-        public List<Subasta> ListarSubastasAbiertas()
+        //Obtener usuario por email
+        public Usuario ObtenerUsuarioPorEmail(string email)
+        {
+            foreach (Usuario unUsuario in this._usuarios)
+            {
+                if (unUsuario.Email == email)
+                    return unUsuario;
+            }
+            throw new Exception("El usuario no existe.");
+        }
+
+        //Listar todas las subastas
+        public List<Subasta> ListarSubastas()
         {
             List<Subasta> aRetornar = new List<Subasta>();
             //Listar subastas
             foreach (Publicacion unaSubasta in this._publicaciones)
             {
-                if (unaSubasta is Subasta && unaSubasta.Estado == EstadoPublicacion.Abierta)
+                if (unaSubasta is Subasta)
                     aRetornar.Add((Subasta)unaSubasta);
             }
+            aRetornar.Sort();
             return aRetornar;
         }
 
         //Retornar subasta por ID
-        public Subasta DevolverSubastaPorId(int id)
+        public Publicacion ObtenerPublicacionPorId(int id)
         {
-            foreach(Subasta unaSubasta in this.ListarSubastasAbiertas())
+            foreach (Publicacion unaPublicacion in this._publicaciones)
             {
-                if(unaSubasta.Id == id)
-                    return unaSubasta;
-            }
-            return null;
-        }
-
-        //Listar todas las ventas abiertas
-        public List<Venta> ListarVentasAbiertas()
-        {
-            List<Venta> aRetornar = new List<Venta>();
-            //Listar subastas
-            foreach (Publicacion unaVenta in this._publicaciones)
-            {
-                if (unaVenta is Venta && unaVenta.Estado == EstadoPublicacion.Abierta)
-                    aRetornar.Add((Venta)unaVenta);
-            }
-            return aRetornar;
-        }
-
-        //Retornar venta por ID
-        public Venta DevolverVentaPorId(int id)
-        {
-            foreach (Venta unaVenta in this.ListarVentasAbiertas())
-            {
-                if (unaVenta.Id == id)
-                    return unaVenta;
+                if (unaPublicacion.Id == id)
+                    return unaPublicacion;
             }
             return null;
         }
