@@ -45,7 +45,13 @@ namespace LibreriaWebApp.Controllers
             {
                 sistema.Login(email, pass);
                 HttpContext.Session.SetString("email", email);
-                return RedirectToAction("Index", "Publicaciones");
+
+                Rol unRol = this.UsuarioActivo().ObtenerRol();
+                HttpContext.Session.SetString("rol", unRol.ToString());
+
+                if (unRol == Rol.Cliente)
+                    return RedirectToAction("Index", "Publicaciones");
+                return RedirectToAction("Index", "Subastas");
             }
             catch (Exception ex)
             {
@@ -59,7 +65,9 @@ namespace LibreriaWebApp.Controllers
             {
                 //Verifica que el rol sea el correcto para la accion, ademas si el usuario es null manda excepcion
                 this.UsuarioActivo().VerificarRol(Rol.Cliente);
-                                
+
+                Cliente unCliente = this.UsuarioActivo() as Cliente;
+                ViewBag.Saldo = unCliente.Saldo;
                 return View();
             }
             catch (Exception ex)
@@ -75,6 +83,7 @@ namespace LibreriaWebApp.Controllers
             {
                 Cliente unCliente = this.UsuarioActivo() as Cliente;
                 unCliente.CargarSaldo(monto);
+                ViewBag.Saldo = unCliente.Saldo;
                 ViewBag.Exito = $"Se agregó $ {monto} a su saldo.";
                 return View();
             }

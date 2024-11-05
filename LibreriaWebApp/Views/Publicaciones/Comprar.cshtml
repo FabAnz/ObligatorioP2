@@ -2,7 +2,7 @@
 @model Venta;
 
 <h1>@Model.Nombre</h1>
-<p>Publicado el @Model.FechaPublicacion</p>
+<p>Publicado el @Model.FechaPublicacion.ToString("dd MMM yyyy")</p>
 @if (Model.EnOferta)
 {
     <p>En oferta</p>

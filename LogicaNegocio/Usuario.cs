@@ -76,13 +76,18 @@ namespace LogicaNegocio
                 throw new Exception("El password debe tener mas de 8 caracteres");
         }
 
+        public Rol ObtenerRol()
+        {
+            Rol rolActivo = Rol.Administrador;
+            if (this is Cliente)
+                rolActivo = Rol.Cliente;
+            return rolActivo;
+        }
+
         //Verifica que el rol del usuario sea el correcto para la vista a la que se quiere acceder
         public void VerificarRol(Rol unRol)
         {
-            Rol rolActivo = Rol.Administrador;
-            if(this is Cliente) 
-                rolActivo = Rol.Cliente;
-            if (rolActivo != unRol)
+            if (this.ObtenerRol() != unRol)
                 throw new Exception("No tiene permiso para acceder a esta sección.");
         }
     }

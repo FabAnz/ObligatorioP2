@@ -1,0 +1,48 @@
+﻿@using LogicaNegocio;
+@model List<Subasta>;
+
+<h1>Subastas</h1>
+
+@if (ViewBag.Exito != null)
+{
+    <div class="alert alert-success">
+        <p>@ViewBag.Exito</p>
+    </div>
+}
+
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger">
+        <p>@ViewBag.Error</p>
+    </div>
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Fecha de publicación</th>
+            <th scope="col">Estado</th>
+            <th scope="col">Precio</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Subasta unaSubasta in Model)
+        {
+            <tr>
+                <th scope="row">@unaSubasta.Nombre</th>
+                <td>@unaSubasta.FechaPublicacion.ToString("dd MMM yyyy")</td>
+                <td>@unaSubasta.Estado</td>
+                <td>$ @unaSubasta.CalcularPrecio()</td>
+                @if (unaSubasta.Estado == EstadoPublicacion.Abierta)
+                {
+                    <td><a class="btn btn-primary" href="~/Subastas/Cerrar/@unaSubasta.Id">Cerrar</a></td>
+                }
+                else
+                {
+                    <td></td>
+                }
+            </tr>
+        }
+    </tbody>

@@ -25,11 +25,6 @@ namespace LogicaNegocio
             this._saldo = 0;
         }
 
-        public override string ToString()
-        {
-            return $"ID: {this.Id} - {this.Nombre} {this.Apellido}";
-        }
-
         /*Controla si el cliente tiene el saldo suficiente para cerrar una compra
         o para que le validen una oferta en una subasta*/
         public bool SaldoSuficiente(double precio)

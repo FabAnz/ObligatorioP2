@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LogicaNegocio
 {
-    public class Oferta
+    public class Oferta : IComparable<Oferta>
     {
         private static int s_id = 0;
 
@@ -34,6 +34,11 @@ namespace LogicaNegocio
             this._cliente = unCliente;
             this._monto = monto;
             this._fecha = DateTime.Now;
+        }
+
+        public int CompareTo(Oferta? other)
+        {
+            return this.Monto.CompareTo(other.Monto) * -1;
         }
     }
 }

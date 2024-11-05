@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LogicaNegocio
 {
-    public class Subasta : Publicacion
+    public class Subasta : Publicacion, IComparable<Subasta>
     {
         private List<Oferta> _ofertas = new List<Oferta>();
 
@@ -22,6 +22,7 @@ namespace LogicaNegocio
             {
                 ValidarOferta(unaOferta);
                 this._ofertas.Add(unaOferta);
+                this._ofertas.Sort();
             }
             catch (Exception ex)
             {
@@ -49,17 +50,8 @@ namespace LogicaNegocio
         {
             Sistema sistema = Sistema.Instancia;
             Oferta ganadora = OfertaGanadora();
-
-            //En caso de que la subasta no tenga ofertas
-            if (ganadora.Cliente == null)
-            {
-                Console.Write("\nLa subasta no tuvo ofertas");
-                this.FinalizarPublicacion(null, null);
-            }
-            else
-            {
-                this.FinalizarPublicacion(ganadora.Cliente, sistema.ObtenerUsuarioPorEmail(email));
-            }
+                        
+            this.FinalizarPublicacion(ganadora.Cliente, sistema.ObtenerUsuarioPorEmail(email));
         }
 
         public override double CalcularPrecio()
@@ -71,6 +63,11 @@ namespace LogicaNegocio
         {
             if (unaOferta.Monto <= this.CalcularPrecio())
                 throw new Exception($"La oferta debe ser mayor a ${this.CalcularPrecio()}");
+        }
+
+        public int CompareTo(Subasta? other)
+        {
+            return this.FechaPublicacion.CompareTo(other.FechaPublicacion);
         }
     }
 }

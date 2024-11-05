@@ -93,45 +93,6 @@ namespace LogicaNegocio
             }
         }
 
-        public List<Cliente> ListarClientes()
-        {
-            List<Cliente> lista = new List<Cliente>();
-            foreach (Usuario unCliente in this._usuarios)
-            {
-                if (unCliente is Cliente)//GPT
-                    lista.Add((Cliente)unCliente);
-            }
-            return lista;
-        }
-
-        public List<Articulo> ListarArticulos(Categoria categoria)
-        {
-            List<Articulo> lista = new List<Articulo>();
-            foreach (Articulo unArticulo in this._articulos)
-            {
-                if (unArticulo.Categoria == categoria)
-                    lista.Add(unArticulo);
-            }
-            return lista;
-        }
-
-        /*public List<Publicacion> ListarPublicaciones(DateTime? fecha1, DateTime? fecha2)
-        {
-            List<Publicacion> lista = new List<Publicacion>();
-            if (fecha1 > fecha2)
-            {
-                DateTime? aux = fecha1;
-                fecha1 = fecha2;
-                fecha2 = aux;
-            }
-            foreach (Publicacion unaPublicacion in this._publicaciones)
-            {
-                if (unaPublicacion.FechaPublicacion >= fecha1 && unaPublicacion.FechaPublicacion <= fecha2)
-                    lista.Add(unaPublicacion);
-            }
-            return lista;
-        }*/
-
         public void PrecargarDatos()
         {
             this.PrecargarClientes();
@@ -541,34 +502,27 @@ namespace LogicaNegocio
         //Obtener usuario por email
         public Usuario ObtenerUsuarioPorEmail(string email)
         {
-            foreach(Usuario unUsuario in this._usuarios)
+            foreach (Usuario unUsuario in this._usuarios)
             {
-                if(unUsuario.Email == email) 
+                if (unUsuario.Email == email)
                     return unUsuario;
             }
             throw new Exception("El usuario no existe.");
         }
 
-        //Verificar si el usuario logueado es comprador o administrador
-        public bool UsuarioEsAdministrador(Usuario unUsuario)
-        {
-            if (!(unUsuario is Cliente))
-                return true;
-            return false;
-        }
-
-        //Listar todas las subastas abiertas
-        /*public List<Subasta> ListarSubastasAbiertas()
+        //Listar todas las subastas
+        public List<Subasta> ListarSubastas()
         {
             List<Subasta> aRetornar = new List<Subasta>();
             //Listar subastas
             foreach (Publicacion unaSubasta in this._publicaciones)
             {
-                if (unaSubasta is Subasta && unaSubasta.Estado == EstadoPublicacion.Abierta)
+                if (unaSubasta is Subasta)
                     aRetornar.Add((Subasta)unaSubasta);
             }
+            aRetornar.Sort();
             return aRetornar;
-        }*/
+        }
 
         //Retornar subasta por ID
         public Publicacion ObtenerPublicacionPorId(int id)
@@ -580,29 +534,5 @@ namespace LogicaNegocio
             }
             return null;
         }
-
-        //Listar todas las ventas abiertas
-        /*public List<Venta> ListarVentasAbiertas()
-        {
-            List<Venta> aRetornar = new List<Venta>();
-            //Listar subastas
-            foreach (Publicacion unaVenta in this._publicaciones)
-            {
-                if (unaVenta is Venta && unaVenta.Estado == EstadoPublicacion.Abierta)
-                    aRetornar.Add((Venta)unaVenta);
-            }
-            return aRetornar;
-        }*/
-
-        //Retornar venta por ID
-        /*public Venta DevolverVentaPorId(int id)
-        {
-            foreach (Venta unaVenta in this.ListarVentasAbiertas())
-            {
-                if (unaVenta.Id == id)
-                    return unaVenta;
-            }
-            return null;
-        }*/
     }
 }

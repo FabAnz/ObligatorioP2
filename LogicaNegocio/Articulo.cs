@@ -38,10 +38,5 @@ namespace LogicaNegocio
             this._categoria = categoria;
             this._precioVenta = precioVenta;
         }
-
-        public override string ToString()
-        {
-            return $"ID: {this._id} - {this._nombre} $ {this._precioVenta}";
-        }
     }
 }
