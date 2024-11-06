@@ -33,6 +33,8 @@ namespace LibreriaWebApp.Controllers
         public IActionResult Login(string exito, string error)
         {
             HttpContext.Session.SetString("email", "");
+            HttpContext.Session.SetString("nombre", "");
+            HttpContext.Session.SetString("rol", "");
             ViewBag.Exito = exito;
             ViewBag.Error = error;
             return View();
@@ -45,6 +47,7 @@ namespace LibreriaWebApp.Controllers
             {
                 sistema.Login(email, pass);
                 HttpContext.Session.SetString("email", email);
+                HttpContext.Session.SetString("nombre", UsuarioActivo().Nombre);
 
                 Rol unRol = this.UsuarioActivo().ObtenerRol();
                 HttpContext.Session.SetString("rol", unRol.ToString());
