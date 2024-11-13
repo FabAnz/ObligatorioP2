@@ -1,22 +1,89 @@
-html {
-  font-size: 14px;
+* {
+    //border: 1px solid red;
 }
 
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
+:root{
+    
 }
 
 body {
-  margin-bottom: 60px;
+    background-color: #0A1626;
+}
+
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+.full-height {
+    height: 100vh;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.px-56 {
+    padding-left: 56px;
+    padding-right: 56px;
+}
+
+.py-144 {
+    padding-top: 144px;
+    padding-bottom: 144px;
+}
+
+.ingreso {
+    max-width: 1020px;
+    background-color: white;
+}
+
+.alert-popup {
+    position: absolute;
+    top: -100px; /* Comienza fuera de la pantalla */
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 90%;
+    max-width: 500px;
+    opacity: 0; /* Oculto al inicio */
+    transition: all 0.5s ease-in-out; /* Transición suave */
+    z-index: 10;
+}
+
+    /* Cuando la alerta es visible */
+    .alert-popup.show {
+        top: 0px; /* Posición final deseada */
+        opacity: 1; /* Se hace visible */
+    }
+
+/* Añadir animación de deslizamiento */
+@keyframes slideDown {
+    from {
+        top: -100px;
+        opacity: 0;
+    }
+
+    to {
+        top: 0px;
+        opacity: 1;
+    }
+}
+
+.alert-popup.show {
+    animation: slideDown 0.5s ease-in-out;
 }
