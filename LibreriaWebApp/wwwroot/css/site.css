@@ -2,12 +2,39 @@
     //border: 1px solid red;
 }
 
-:root{
-    
+:root {
+    --gris-950: #262626;
+    --gris-200: #D1D1D1;
+    --gris-50: #F6F6F6;
+    --violeta-500: #7E42FF;
+    --violeta-400: #A585FF;
+    --verde-400: #CBF625;
+    --blanco: white;
+    --font-family-contnido: "Quicksand";
+    --font-family-titulo: "Quicksand";
+    --font-weight-regular: 400;
+    --font-weight-medium: 500;
+    --font-weight-semi-bold: 600;
+    --font-weight-bold: 700;
+    --font-size-28: 28px;
+    --font-size-24: 24px;
+    --font-size-20: 20px;
+    --font-size-14: 14px;
+    --radius-16: 16px;
+    --radius-8: 8px;
+}
+
+/* fuentes */
+@font-face {
+    font-family: "Quicksand";
+    src: url(../fonts/Quicksand.ttf) format('truetype');
+    font-style: normal;
 }
 
 body {
-    background-color: #0A1626;
+    background-color: var(--gris-200);
+    font-family: var(--font-family-contnido);
+    font-weight: var(--font-weight-medium);
 }
 
 html {
@@ -37,18 +64,8 @@ html {
     width: 100%;
 }
 
-.px-56 {
-    padding-left: 56px;
-    padding-right: 56px;
-}
-
-.py-144 {
-    padding-top: 144px;
-    padding-bottom: 144px;
-}
-
 .ingreso {
-    max-width: 1020px;
+    max-width: 800px;
     background-color: white;
 }
 
@@ -87,3 +104,81 @@ html {
 .alert-popup.show {
     animation: slideDown 0.5s ease-in-out;
 }
+
+/*Login*/
+.contenedor-login {
+    background-color: var(--gris-950);
+}
+
+.login {
+    background-color: var(--blanco);
+    padding: 96px 40px;
+}
+
+    .login h1 {
+        font-size: var(--font-size-24);
+    }
+
+.contenedor-login,
+.login,
+.ingreso {
+    border-radius: var(--radius-16);
+}
+
+input {
+    width: 100%;
+    padding: 8px 16px;
+    border: solid 1px var(--gris-950);
+    border-radius: var(--radius-8);
+}
+
+.btn-violeta {
+    padding: 8px 16px;
+    border: 2px solid var(--violeta-500);
+    color: var(--blanco);
+    background-color: var(--violeta-500);
+    border-radius: var(--radius-8);
+    font-weight: var(--font-weight-semi-bold);
+    transition: all 0.2s;
+}
+
+    .btn-violeta:active {
+        border: 2px solid var(--violeta-400);
+        background-color: var(--violeta-400);
+    }
+
+@media (hover: hover) and (pointer: fine) {
+    .btn-violeta:hover {
+        border: 2px solid var(--violeta-400);
+        background-color: var(--violeta-400);
+    }
+}
+
+a {
+    color: var(--violeta-500);
+}
+
+.login-info {
+    height: 100%;
+    padding: 72px 48px;
+}
+
+
+    .login-info span {
+        color: var(--verde-400);
+        font-size: var(--font-size-28);
+    }
+
+        .login-info span:first-child {
+            font-size: var(--font-size-20);
+        }
+
+    .login-info p {
+        color: var(--gris-50);
+        font-weight: var(--font-weight-regular);
+    }
+
+@media screen and (max-width: 768px) {
+    .login-info {
+        padding: 40px;
+    }

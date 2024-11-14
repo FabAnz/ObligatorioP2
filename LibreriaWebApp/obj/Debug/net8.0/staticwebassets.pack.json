@@ -13,6 +13,10 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "D:\\ORT\\Programacion 2\\Obligatorio 2\\ObligatorioP2\\LibreriaWebApp\\wwwroot\\fonts\\Quicksand.ttf",
+      "PackagePath": "staticwebassets\\fonts\\Quicksand.ttf"
+    },
+    {
       "Id": "D:\\ORT\\Programacion 2\\Obligatorio 2\\ObligatorioP2\\LibreriaWebApp\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },

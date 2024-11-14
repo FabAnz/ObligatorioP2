@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "QCnDrJGxIO0t93prcHsC/k2/y3AbU3kSCLKqZ90RpcU=",
+  "Hash": "qclkjCLRsm4bq8q6zci/MbVhUqvQeiWK9/LE7SiIUOE=",
   "Source": "LibreriaWebApp",
   "BasePath": "_content/LibreriaWebApp",
   "Mode": "Default",
@@ -91,6 +91,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "D:\\ORT\\Programacion 2\\Obligatorio 2\\ObligatorioP2\\LibreriaWebApp\\wwwroot\\fonts\\Quicksand.ttf",
+      "SourceId": "LibreriaWebApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\ORT\\Programacion 2\\Obligatorio 2\\ObligatorioP2\\LibreriaWebApp\\wwwroot\\",
+      "BasePath": "_content/LibreriaWebApp",
+      "RelativePath": "fonts/Quicksand.ttf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\fonts\\Quicksand.ttf"
     },
     {
       "Identity": "D:\\ORT\\Programacion 2\\Obligatorio 2\\ObligatorioP2\\LibreriaWebApp\\wwwroot\\js\\site.js",
