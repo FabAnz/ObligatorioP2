@@ -115,7 +115,7 @@ html {
     padding: 96px 40px;
 }
 
-    .login h1 {
+    h1 {
         font-size: var(--font-size-24);
     }
 
@@ -154,6 +154,28 @@ input {
     }
 }
 
+.btn-violeta-3 {
+    padding: 8px 16px;
+    border: 0px;
+    color: var(--violeta-500);
+    background-color: transparent;
+    font-weight: var(--font-weight-semi-bold);
+    transition: all 0.2s;
+}
+
+
+    .btn-violeta-3:active {
+        border: 0px;
+        color: var(--violeta-400);
+    }
+
+@media (hover: hover) and (pointer: fine) {
+    .btn-violeta-3:hover {
+        border: 0px;
+        color: var(--violeta-400);
+    }
+}
+
 a {
     color: var(--violeta-500);
 }
@@ -163,6 +185,9 @@ a {
     padding: 72px 48px;
 }
 
+.registrate .login {
+    padding: 64px 40px;
+}
 
     .login-info span {
         color: var(--verde-400);
