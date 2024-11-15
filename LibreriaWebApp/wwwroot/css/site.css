@@ -4,11 +4,14 @@
 
 :root {
     --gris-950: #262626;
+    --gris-900: #3D3D3D;
+    --gris-600: #5D5D5D;
     --gris-200: #D1D1D1;
     --gris-50: #F6F6F6;
     --violeta-500: #7E42FF;
     --violeta-400: #A585FF;
     --verde-400: #CBF625;
+    --verde-600: #85B100;
     --blanco: white;
     --font-family-contnido: "Quicksand";
     --font-family-titulo: "Quicksand";
@@ -115,9 +118,9 @@ html {
     padding: 96px 40px;
 }
 
-    h1 {
-        font-size: var(--font-size-24);
-    }
+h1 {
+    font-size: var(--font-size-24);
+}
 
 .contenedor-login,
 .login,
@@ -132,12 +135,34 @@ input {
     border-radius: var(--radius-8);
 }
 
+.btn-dark {
+    padding: 8px 24px;
+    border: 2px solid var(--gris-900);
+    color: var(--blanco);
+    background-color: var(--gris-900);
+    font-weight: var(--font-weight-semi-bold);
+    transition: all 0.2s;
+}
+
+    .btn-dark:active {
+        border: 2px solid var(--gris-600);
+        background-color: var(--gris-600);
+        color: var(--blanco);
+    }
+
+@media (hover: hover) and (pointer: fine) {
+    .btn-dark:hover {
+        border: 2px solid var(--gris-600);
+        background-color: var(--gris-600);
+        color: var(--blanco);
+    }
+}
+
 .btn-violeta {
-    padding: 8px 16px;
+    padding: 8px 24px;
     border: 2px solid var(--violeta-500);
     color: var(--blanco);
     background-color: var(--violeta-500);
-    border-radius: var(--radius-8);
     font-weight: var(--font-weight-semi-bold);
     transition: all 0.2s;
 }
@@ -145,12 +170,14 @@ input {
     .btn-violeta:active {
         border: 2px solid var(--violeta-400);
         background-color: var(--violeta-400);
+        color: var(--blanco);
     }
 
 @media (hover: hover) and (pointer: fine) {
     .btn-violeta:hover {
         border: 2px solid var(--violeta-400);
         background-color: var(--violeta-400);
+        color: var(--blanco);
     }
 }
 
@@ -189,21 +216,58 @@ a {
     padding: 64px 40px;
 }
 
-    .login-info span {
-        color: var(--verde-400);
-        font-size: var(--font-size-28);
+.login-info span {
+    color: var(--verde-400);
+    font-size: var(--font-size-28);
+}
+
+    .login-info span:first-child {
+        font-size: var(--font-size-20);
     }
 
-        .login-info span:first-child {
-            font-size: var(--font-size-20);
-        }
-
-    .login-info p {
-        color: var(--gris-50);
-        font-weight: var(--font-weight-regular);
-    }
+.login-info p {
+    color: var(--gris-50);
+    font-weight: var(--font-weight-regular);
+}
 
 @media screen and (max-width: 768px) {
     .login-info {
         padding: 40px;
     }
+}
+
+.navbar {
+    background-color: var(--gris-50);
+}
+
+.hola {
+    color: var(--gris-950) !important;
+    text-decoration: none !important;
+    font-size: var(--font-size-28);
+}
+
+.navbar-brand span {
+    color: var(--violeta-500);
+    font-weight: var(--font-weight-semi-bold);
+}
+
+.navbar .icono {
+    width: 20px;
+    height: 20px;
+    object-fit: cover;
+}
+
+.btn-icono {
+    padding: 8px 16px !important;
+    font-weight: var(--font-weight-medium);
+}
+
+@media screen and (max-width: 768px){
+    .btn-icono {
+        padding: 16px !important;
+    }
+}
+
+.navbar-nav {
+    flex-direction: row !important;
+}

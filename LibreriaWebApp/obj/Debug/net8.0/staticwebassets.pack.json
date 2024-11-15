@@ -5,6 +5,14 @@
       "PackagePath": "staticwebassets\\LibreriaWebApp.bundle.scp.css"
     },
     {
+      "Id": "D:\\ORT\\Programacion 2\\Obligatorio 2\\ObligatorioP2\\LibreriaWebApp\\wwwroot\\Img\\Icons\\cash.png",
+      "PackagePath": "staticwebassets\\Img\\Icons\\cash.png"
+    },
+    {
+      "Id": "D:\\ORT\\Programacion 2\\Obligatorio 2\\ObligatorioP2\\LibreriaWebApp\\wwwroot\\Img\\Icons\\logout.png",
+      "PackagePath": "staticwebassets\\Img\\Icons\\logout.png"
+    },
+    {
       "Id": "D:\\ORT\\Programacion 2\\Obligatorio 2\\ObligatorioP2\\LibreriaWebApp\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
