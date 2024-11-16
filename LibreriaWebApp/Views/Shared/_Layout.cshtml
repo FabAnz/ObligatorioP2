@@ -8,27 +8,38 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/LibreriaWebApp.styles.css" asp-append-version="true" />
 </head>
-<body>
+<body class="d-flex flex-column justify-content-between">
     <header>
         @if (!string.IsNullOrEmpty(Context.Session.GetString("email")))
         {
-            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-                <div class="container-fluid">
-                    <a class="navbar-brand">Hola @Context.Session.GetString("nombre")</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                            aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                        <ul class="navbar-nav flex-grow-1">
+            <nav class="navbar navbar-expand-sm navbar-toggleable-sm border-bottom box-shadow mb-3 py-4">
+                <div class="container-lg">
+                    @if (Context.Session.GetString("rol") == "Cliente")
+                    {
+                        <a asp-area="" asp-controller="Publicaciones" asp-action="Index" class="navbar-brand hola">hola <span>@Context.Session.GetString("nombre").ToUpper()</span></a>
+                    }
+                    <div class="d-sm-inline-flex justify-content-between">
+                        <ul class="navbar-nav flex-grow-1 gap-3 justify-content-end">
+                            @if (Context.Session.GetString("rol") == "Cliente")
+                            {
+                                <li class="nav-item">
+                                    <a class="d-none d-md-flex nav-link btn-violeta btn-icono align-items-center rounded-pill" asp-area="" asp-controller="Usuarios" asp-action="CargarSaldo">
+                                        <img class="icono me-2" src="~/img/icons/cash.png" alt="Cash icon">
+                                        <p class="mb-0">CARGAR SALDO</p>
+                                    </a>
+                                    <a class="d-md-none d-flex nav-link btn-violeta btn-icono align-items-center rounded-pill" asp-area="" asp-controller="Usuarios" asp-action="CargarSaldo">
+                                        <img class="icono" src="~/img/icons/cash.png" alt="Cash icon">
+                                    </a>
+                                </li>
+                            }
                             <li class="nav-item">
-                                @if (Context.Session.GetString("rol") == "Cliente")
-                                {
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Usuarios" asp-action="CargarSaldo">Cargar saldo</a>
-                                }
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Usuarios" asp-action="Login">Logout</a>
+                                <a class="d-none d-md-flex nav-link btn-dark btn-icono align-items-center rounded-pill" asp-area="" asp-controller="Usuarios" asp-action="Login">
+                                    <img class="icono me-2" src="~/img/icons/logout.png" alt="Logout icon">
+                                    <p class="mb-0">LOGOUT</p>
+                                </a>
+                                <a class="d-md-none d-flex nav-link btn-dark btn-icono align-items-center rounded-pill" asp-area="" asp-controller="Usuarios" asp-action="Login">
+                                    <img class="icono" src="~/img/icons/logout.png" alt="Logout icon">
+                                </a>
                             </li>
                         </ul>
                     </div>
@@ -36,7 +47,7 @@
             </nav>
         }
     </header>
-    <div class="container-fluid">
+    <div class="contenido container-fluid mb-3">
         <main role="main">
             @RenderBody()
         </main>
@@ -44,7 +55,7 @@
 
     @if (!string.IsNullOrEmpty(Context.Session.GetString("email")))
     {
-        <footer class="border-top footer text-muted">
+        <footer>
             <div class="container">
                 &copy; 2024 - Fabián Antúnez - 339182
             </div>

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LibreriaWebApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2bd6ff8a672278a3751768eec324947a941469cc")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+973c3acaa57efd3e4c6dc4a6cc2bf2856fc7c8a9")]
 [assembly: System.Reflection.AssemblyProductAttribute("LibreriaWebApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LibreriaWebApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
