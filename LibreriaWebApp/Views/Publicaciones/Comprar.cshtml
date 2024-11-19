@@ -1,34 +1,52 @@
 ﻿@using LogicaNegocio;
 @model Venta;
 
-<h1>@Model.Nombre</h1>
-<p>Publicado el @Model.FechaPublicacion.ToString("dd MMM yyyy")</p>
-@if (Model.EnOferta)
-{
-    <p>En oferta</p>
-}
-<p>$ @Model.CalcularPrecio()</p>
-<form method="post" action="~/Publicaciones/ComprarFinalizar">
-    <input type="hidden" value="@Model.Id" name="id" id="id"></input>
-    <button type="submit" class="btn btn-primary">Comprar</button>
-</form>
+<div class="container d-flex flex-column flex-lg-row gap-3 justify-content-center">
 
-<h2>Articulos</h2>
+    <div class="caja caja-violeta flex-grow-1 d-flex flex-column justify-content-between">
 
-<table class="table">
-    <thead>
-        <tr>
-            <th scope="col">Nombre</th>
-            <th scope="col">Categoria</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (Articulo unArticulo in ViewBag.Articulos)
-        {
-            <tr>
-                <th scope="row">@unArticulo.Nombre</th>
-                <td>@unArticulo.Categoria</td>
-            </tr>
-        }
-    </tbody>
-</table>
+        <div>
+            <h1 class="text-uppercase">@Model.Nombre</h1>
+            <p><span>Publicado el @Model.FechaPublicacion.ToString("dd MMM yyyy")</span></p>
+            @if (Model.EnOferta)
+            {
+                <p class="pill pill-verde rounded-pill">En oferta</p>
+            }
+        </div>
+
+        <div>
+            <p class="h1 text-end mb-4 mt-5">$ @Model.CalcularPrecio()</p>
+            <form method="post" action="~/Publicaciones/ComprarFinalizar">
+                <input type="hidden" value="@Model.Id" name="id" id="id">
+                <div class="text-end">
+                    <a href="~/Publicaciones/Index" class="btn-blanco-3 text-decoration-none me-3">VOLVER</a>
+                    <button type="submit" class="btn-blanco rounded-pill">COMPRAR</button>
+                </div>
+            </form>
+        </div>
+
+
+    </div>
+
+    <div class="caja caja-dark">
+        <span class="h4">Articulos</span>
+
+        <table class="table mt-4">
+            <thead>
+                <tr>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Categoria</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Articulo unArticulo in ViewBag.Articulos)
+                {
+                    <tr>
+                        <td scope="row">@unArticulo.Nombre</td>
+                        <td>@unArticulo.Categoria</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

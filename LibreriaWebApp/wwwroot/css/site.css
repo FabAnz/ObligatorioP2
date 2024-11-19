@@ -9,6 +9,7 @@
     --gris-200: #D1D1D1;
     --gris-100: #E7E7E7;
     --gris-50: #F6F6F6;
+    --violeta-200: #DCD4FF;
     --violeta-500: #7E42FF;
     --violeta-400: #A585FF;
     --verde-400: #CBF625;
@@ -165,6 +166,46 @@ input {
     }
 }
 
+.btn-blanco {
+    padding: 8px 24px;
+    border: 2px solid var(--gris-50);
+    color: var(--violeta-500);
+    background-color: var(--gris-50);
+    font-weight: var(--font-weight-semi-bold);
+    transition: all 0.2s;
+}
+
+    .btn-blanco:active {
+        border: 2px solid var(--gris-50);
+        background-color: transparent;
+        color: var(--gris-50);
+    }
+
+@media (hover: hover) and (pointer: fine) {
+    .btn-blanco:hover {
+        border: 2px solid var(--gris-50);
+        background-color: transparent;
+        color: var(--gris-50);
+    }
+}
+
+.btn-blanco-3 {
+    padding: 8px 24px;
+    color: var(--gris-50);
+    font-weight: var(--font-weight-semi-bold);
+    transition: all 0.2s;
+}
+
+    .btn-blanco-3:active {
+        color: var(--gris-200);
+    }
+
+@media (hover: hover) and (pointer: fine) {
+    .btn-blanco-3:hover {
+        color: var(--gris-200);
+    }
+}
+
 .btn-violeta-2 {
     padding: 8px 24px;
     border: 2px solid var(--violeta-500);
@@ -175,16 +216,14 @@ input {
 }
 
     .btn-violeta-2:active {
-        border: 2px solid var(--verde-500);
-        background-color: var(--verde-500);
-        color: var(--blanco);
+        background-color: var(--violeta-500);
+        color: var(--gris-50);
     }
 
 @media (hover: hover) and (pointer: fine) {
     .btn-violeta-2:hover {
-        border: 2px solid var(--verde-500);
-        background-color: var(--verde-500);
-        color: var(--blanco);
+        background-color: var(--violeta-500);
+        color: var(--gris-50);
     }
 }
 
@@ -294,7 +333,7 @@ a {
 
 @media screen and (max-width: 768px) {
     .btn-icono {
-        padding: 16px !important;
+        padding: 12px !important;
     }
 }
 
@@ -303,7 +342,6 @@ a {
 }
 
 table .btn-violeta-2 {
-    font-size: var(--font-size-14);
     display: block;
     text-align: center;
     max-width: 150px;
@@ -311,6 +349,7 @@ table .btn-violeta-2 {
 
 @media screen and (max-width: 768px) {
     table .btn-violeta-2 {
+        font-size: var(--font-size-12);
         padding: 4px 8px !important;
     }
 }
@@ -321,6 +360,7 @@ td, th {
 
 .text-violeta {
     color: var(--violeta-500);
+    font-weight: var(--font-weight-bold);
 }
 
 .pill {
@@ -353,4 +393,70 @@ footer {
     color: var(--gris-50);
     padding: 16px 0;
     text-align: center;
+}
+
+.caja {
+    padding: 48px;
+    border-radius: 32px;
+}
+
+    .caja .pill {
+        font-size: 16px;
+    }
+
+@media screen and (max-width: 768px) {
+    .caja {
+        padding: 32px;
+    }
+
+        .caja .pill {
+            font-size: 14px;
+        }
+
+        .caja .btn-blanco {
+            padding: 4px 12px;
+        }
+
+        .caja .btn-blanco-3 {
+            padding: 4px 12px;
+        }
+}
+
+
+.caja-violeta {
+    background: linear-gradient(135deg, hsla(272, 85%, 37%, 1) 23%, hsla(255, 92%, 42%, 1) 100%);
+    color: var(--gris-50);
+}
+
+@media screen and (min-width:992px) {
+    .caja-violeta {
+        min-height: 392px;
+    }
+}
+
+.caja-violeta span {
+    color: var(--violeta-200);
+    font-weight: var(--font-weight-regular);
+}
+
+.caja-dark {
+    background: var(--gris-950);
+    color: var(--gris-50);
+}
+
+    .caja-dark span {
+        color: var(--verde-500);
+    }
+
+@media screen and (max-width:768px) {
+    .caja-dark table {
+        font-size: 12px;
+    }
+}
+
+.caja-dark th,
+.caja-dark td {
+    color: var(--gris-200);
+    font-size: 14px;
+    padding: 8px 24px 8px 8px;
 }
