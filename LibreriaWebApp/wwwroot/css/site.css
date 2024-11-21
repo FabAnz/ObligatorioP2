@@ -17,7 +17,10 @@
     --verde-600: #85B100;
     --verde-semantico-200: #BEF4C2;
     --verde-semantico-900: #17501E;
+    --rojo-semantico-200: #ffc7c8;
+    --rojo-semantico-950: #480708;
     --blanco: white;
+    --degradado-violeta: linear-gradient(135deg, hsla(272, 85%, 37%, 1) 23%, hsla(255, 92%, 42%, 1) 100%);
     --font-family-contnido: "Quicksand";
     --font-family-titulo: "Quicksand";
     --font-weight-regular: 400;
@@ -373,7 +376,6 @@ td, th {
 @media screen and (max-width: 768px) {
     .pill {
         font-size: var(--font-size-12);
-        //font-weight: var(--font-weight-medium);
         padding: 2px 8px;
     }
 }
@@ -386,6 +388,11 @@ td, th {
 .pill-gris {
     color: var(--gris-950);
     background-color: var(--gris-200);
+}
+
+.pill-rojo-dark {
+    color: var(--rojo-semantico-200);
+    background-color: var(--rojo-semantico-950);
 }
 
 footer {
@@ -424,7 +431,7 @@ footer {
 
 
 .caja-violeta {
-    background: linear-gradient(135deg, hsla(272, 85%, 37%, 1) 23%, hsla(255, 92%, 42%, 1) 100%);
+    background: var(--degradado-violeta);
     color: var(--gris-50);
 }
 
@@ -437,6 +444,33 @@ footer {
 .caja-violeta span {
     color: var(--violeta-200);
     font-weight: var(--font-weight-regular);
+}
+
+.caja-violeta input {
+    border: 2px solid var(--gris-50);
+    background-color: transparent;
+    color: var(--gris-50);
+    padding: 8px 24px;
+    font-weight: var(--font-weight-semi-bold);
+    font-size: var(--font-size-20);
+}
+
+    .caja-violeta input::placeholder {
+        color: var(--gris-100);
+    }
+
+    .caja-violeta input:focus {
+        background-color: transparent;
+        color: var(--gris-50);
+        box-shadow: 0px 0 17px 1px #ea3cff;
+        border: 2px solid var(--gris-50);
+    }
+
+@media screen and (max-width: 768px) {
+    .caja-violeta input {
+        font-size: var(--font-size-14);
+        padding: 4px 16px;
+    }
 }
 
 .caja-dark {
@@ -459,4 +493,62 @@ footer {
     color: var(--gris-200);
     font-size: 14px;
     padding: 8px 24px 8px 8px;
+}
+
+.caja-dark .pill {
+    font-size: 14px;
+}
+
+.alert p {
+    margin: 0;
+    font-weight: var(--font-weight-bold);
+}
+
+.oferta {
+    color: var(--violeta-400) !important;
+}
+
+.height-100 {
+    height: 100%;
+}
+
+.grid-ofertas {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: auto;
+    gap: 16px;
+}
+
+    .grid-ofertas .caja-violeta,
+    .grid-ofertas .caja-dark {
+        grid-column: span 12;
+    }
+
+@media screen and (min-width:992px) {
+
+    .grid-ofertas .caja-violeta,
+    .grid-ofertas .caja-dark:nth-child(3) {
+        grid-column: span 6;
+    }
+
+    .grid-ofertas .caja-dark:nth-child(2) {
+        grid-column: span 6;
+        grid-row: span 2;
+    }
+}
+
+.oferta-ganadora {
+    background: var(--degradado-violeta);
+}
+
+    .oferta-ganadora td {
+        background-color: transparent;
+        font-weight: var(--font-weight-bold);
+        font-size: 16px;
+    }
+
+@media screen and (max-width:768px) {
+    .oferta-ganadora td {
+        font-size: var(--font-size-14);
+    }
 }

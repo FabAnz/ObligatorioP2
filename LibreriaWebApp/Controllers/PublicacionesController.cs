@@ -46,7 +46,6 @@ namespace LibreriaWebApp.Controllers
                     throw new Exception("Error en el tipo de dato.");
 
                 Venta unaVenta = (Venta)unaPublicacion;
-                ViewBag.Articulos = unaVenta.Articulos;
                 return View(unaVenta);
             }
             catch (Exception ex)
@@ -80,7 +79,6 @@ namespace LibreriaWebApp.Controllers
                 if (!(unaPublicacion is Subasta))
                     throw new Exception("Error en el tipo de dato.");
                 Subasta unaSubasta = (Subasta)unaPublicacion;
-                ViewBag.Articulos = unaSubasta.Articulos;
                 return View(unaSubasta);
             }
             catch (Exception ex)
@@ -98,7 +96,6 @@ namespace LibreriaWebApp.Controllers
                 Cliente unCliente = this.UsuarioActivo() as Cliente;
                 Oferta oferta = new Oferta(unCliente, monto);
                 unaSubasta.AgregarOferta(oferta);
-                ViewBag.Articulos = unaSubasta.Articulos;
                 ViewBag.Exito = "Oferta realizada con exito.";
                 return View(unaSubasta);
             }

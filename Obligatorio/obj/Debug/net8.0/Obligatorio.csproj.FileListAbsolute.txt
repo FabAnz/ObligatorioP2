@@ -17,3 +17,12 @@ D:\ORT\Programacion 2\Obligatorio 1\Codigo\Obligatorio\obj\Debug\net8.0\Obligato
 D:\ORT\Programacion 2\Obligatorio 1\Codigo\Obligatorio\obj\Debug\net8.0\Obligatorio.genruntimeconfig.cache
 D:\ORT\Programacion 2\Obligatorio 1\Codigo\Obligatorio\obj\Debug\net8.0\ref\Obligatorio.dll
 D:\ORT\Programacion 2\Obligatorio 1\Codigo\Obligatorio\obj\Debug\net8.0\Obligatorio.sourcelink.json
+D:\ORT\Programacion 2\Obligatorio 2\ObligatorioP2\Obligatorio\obj\Debug\net8.0\Obligatorio.csproj.AssemblyReference.cache
+D:\ORT\Programacion 2\Obligatorio 2\ObligatorioP2\Obligatorio\obj\Debug\net8.0\Obligatorio.GeneratedMSBuildEditorConfig.editorconfig
+D:\ORT\Programacion 2\Obligatorio 2\ObligatorioP2\Obligatorio\obj\Debug\net8.0\Obligatorio.AssemblyInfoInputs.cache
+D:\ORT\Programacion 2\Obligatorio 2\ObligatorioP2\Obligatorio\obj\Debug\net8.0\Obligatorio.AssemblyInfo.cs
+D:\ORT\Programacion 2\Obligatorio 2\ObligatorioP2\Obligatorio\obj\Debug\net8.0\Obligatorio.csproj.CoreCompileInputs.cache
+D:\ORT\Programacion 2\Obligatorio 2\ObligatorioP2\Obligatorio\obj\Debug\net8.0\Obligatorio.sourcelink.json
+D:\ORT\Programacion 2\Obligatorio 2\ObligatorioP2\Obligatorio\obj\Debug\net8.0\Obligatorio.dll
+D:\ORT\Programacion 2\Obligatorio 2\ObligatorioP2\Obligatorio\obj\Debug\net8.0\refint\Obligatorio.dll
+D:\ORT\Programacion 2\Obligatorio 2\ObligatorioP2\Obligatorio\obj\Debug\net8.0\Obligatorio.pdb
