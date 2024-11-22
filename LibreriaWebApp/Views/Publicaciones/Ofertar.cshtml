@@ -1,8 +1,7 @@
 ﻿@using LogicaNegocio;
 @model Subasta;
 
-@if (Model.Estado == EstadoPublicacion.Abierta)
-{
+
 
     @if (ViewBag.Exito != null)
     {
@@ -118,11 +117,5 @@
             </div>
 
         </div>
-    </div>
-}
-else
-{
-    <div class="alert alert-danger">
-        <p>Esta subasta no está disponible.</p>
     </div>
 }

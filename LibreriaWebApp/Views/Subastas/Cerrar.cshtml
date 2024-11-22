@@ -1,58 +1,100 @@
 ﻿@using LogicaNegocio;
 @model Subasta;
 
-<h1>@Model.Nombre</h1>
-<p>Publicado el @Model.FechaPublicacion.ToString("dd MMM yyyy")</p>
+<div class="container">
+    <div class="grid-ofertas">
 
-<p>Oferta valida más alta $ @Model.CalcularPrecio()</p>
-<form method="post" action="~/Subastas/CerrarFinalizar">
-    <input type="hidden" value="@Model.Id" name="id" id="id"></input>
-    <a href="~/Subastas/Index" class="btn btn-secondary">Volver</a>
-    <button type="submit" class="btn btn-primary">Cerrar</button>
-</form>
+        <!--Titulo-->
+        <div class="caja caja-violeta flex-grow-1 d-flex flex-column justify-content-between">
 
-<h2>Articulos</h2>
+            <div>
+                <h1 class="text-uppercase">@Model.Nombre</h1>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th scope="col">Nombre</th>
-            <th scope="col">Categoria</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (Articulo unArticulo in ViewBag.Articulos)
-        {
-            <tr>
-                <th scope="row">@unArticulo.Nombre</th>
-                <td>@unArticulo.Categoria</td>
-            </tr>
-        }
-    </tbody>
-</table>
+                <p class="mb-0"><span>Publicado el @Model.FechaPublicacion.ToString("dd MMM yyyy")</span></p>
+            </div>
 
-<h2>Ofertas</h2>
+            <div>
+                <p class="text-end mb-0 mt-5"><span>oferta mas alta</span></p>
+                <p class="h1 text-end mb-4">$ @Model.CalcularPrecio()</p>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th scope="col">Cliente</th>
-            <th scope="col">Oferta</th>
-            <th scope="col"></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (Oferta unaOferta in ViewBag.Ofertas)
-        {
-            <tr>
-                <th scope="row">@unaOferta.Cliente.Email</th>
-                <td>$ @unaOferta.Monto</td>
-                <td>@if(!unaOferta.Cliente.SaldoSuficiente(unaOferta.Monto))
+                <form method="post" action="~/Subastas/CerrarFinalizar">
+                    <input type="hidden" value="@Model.Id" name="id" id="id"></input>
+
+                    <div class="text-end">
+                        <a href="~/Subastas/Index" class="btn-blanco-3 text-decoration-none me-3">VOLVER</a>
+                        <button type="submit" class="btn-blanco rounded-pill">CERRAR</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!--Ofertas-->
+        <div class="caja caja-dark">
+            <span class="h4">Ofertas</span>
+            <table class="table mt-4">
+                <thead>
+                    <tr>
+                        <th scope="col">Cliente</th>
+                        <th scope="col">Monto</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!--Ofertas valida mas alta-->
+                    @if (Model.OfertaGanadora().Cliente != null)
                     {
-                        <span>(Saldo insuficiente)</span>
+                        <tr class="oferta-ganadora">
+                            <td class="align-content-center" scope="row">@Model.OfertaGanadora().Cliente.Email</td>
+                            <td>$ @Model.OfertaGanadora().Monto</td>
+                        </tr>
                     }
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+                    <!--Resto de ofertas-->
+                    @foreach (Oferta unaOferta in Model.Ofertas)
+                    {
+                        @if (unaOferta != Model.OfertaGanadora())
+                        {
+                            <tr>
+                                <td>
+                                    @if (!unaOferta.Cliente.SaldoSuficiente(unaOferta.Monto))
+                                    {
+                                        <div class="d-flex flex-column">
+                                            <p class="mb-0">@unaOferta.Cliente.Email</p>
+                                            <p class="mt-2 mb-0 pill pill-rojo-dark rounded-pill">Saldo insuficiente</p>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <p class="mb-0">@unaOferta.Cliente.Email</p>
+                                    }
+                                </td>
+                                <td class="align-content-center" scope="row">$ @unaOferta.Monto</td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <!--Articulos-->
+        <div class="caja caja-dark">
+            <span class="h4">Articulos</span>
+            <table class="table mt-4">
+                <thead>
+                    <tr>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Categoria</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (Articulo unArticulo in Model.Articulos)
+                    {
+                        <tr>
+                            <td scope="row">@unArticulo.Nombre</td>
+                            <td>@unArticulo.Categoria</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
