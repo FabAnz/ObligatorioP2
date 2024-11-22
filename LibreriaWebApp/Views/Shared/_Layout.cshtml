@@ -18,6 +18,10 @@
                     {
                         <a asp-area="" asp-controller="Publicaciones" asp-action="Index" class="navbar-brand hola">hola <span>@Context.Session.GetString("nombre").ToUpper()</span></a>
                     }
+                    else if (Context.Session.GetString("rol") == "Administrador")
+                    {
+                        <a asp-area="" asp-controller="Subastas" asp-action="Index" class="navbar-brand hola">hola <span>@Context.Session.GetString("nombre").ToUpper()</span></a>
+                    }
                     <div class="d-sm-inline-flex justify-content-between">
                         <ul class="navbar-nav flex-grow-1 gap-3 justify-content-end">
                             @if (Context.Session.GetString("rol") == "Cliente")
@@ -47,6 +51,7 @@
             </nav>
         }
     </header>
+
     <div class="contenido container-fluid mb-3">
         <main role="main">
             @RenderBody()

@@ -66,7 +66,7 @@ namespace LogicaNegocio
 
             if (comprador == null)
             {
-                this._estado = EstadoPublicacion.Cerrada;
+                this._estado = EstadoPublicacion.Cancelada;
                 this._finalizoCompra = finalizador;
                 this._fechaFinalizacion = DateTime.Today;
             }

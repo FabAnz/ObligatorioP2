@@ -448,8 +448,8 @@ namespace LogicaNegocio
             subasta9.FechaPublicacion = DateTime.Parse("28-05-2024");
             subasta10.FechaPublicacion = DateTime.Parse("16-02-2024");
 
-            subasta2.Estado = EstadoPublicacion.Cerrada;
-            subasta3.Estado = EstadoPublicacion.Cancelada;
+            subasta2.Estado = EstadoPublicacion.Cancelada;
+            subasta3.Estado = EstadoPublicacion.Cerrada;
             subasta5.Estado = EstadoPublicacion.Cerrada;
 
             this.AgregarSubasta(subasta1);

@@ -1,48 +1,75 @@
 ﻿@using LogicaNegocio;
 @model List<Subasta>;
 
-<h1>Subastas</h1>
 
-@if (ViewBag.Exito != null)
-{
-    <div class="alert alert-success">
-        <p>@ViewBag.Exito</p>
-    </div>
-}
+<div class="container-lg bg-claro py-4 py-md-5 px-md-5 px-3">
+    <h1 class="mb-5 text-center text-md-start">Subastas</h1>
 
-@if (ViewBag.Error != null)
-{
-    <div class="alert alert-danger">
-        <p>@ViewBag.Error</p>
-    </div>
-}
+    @if (ViewBag.Exito != null)
+    {
+        <div class="alert alert-success alert-dismissible alert-popup show full-width">
+            <p>@ViewBag.Exito</p>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
 
-<table class="table">
-    <thead>
-        <tr>
-            <th scope="col">Nombre</th>
-            <th scope="col">Fecha de publicación</th>
-            <th scope="col">Estado</th>
-            <th scope="col">Precio</th>
-            <th scope="col"></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (Subasta unaSubasta in Model)
-        {
+    @if (ViewBag.Error != null)
+    {
+        <div class="alert alert-danger alert-dismissible alert-popup show full-width">
+            <p>@ViewBag.Error</p>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    <table class="table">
+        <thead>
             <tr>
-                <th scope="row">@unaSubasta.Nombre</th>
-                <td>@unaSubasta.FechaPublicacion.ToString("dd MMM yyyy")</td>
-                <td>@unaSubasta.Estado</td>
-                <td>$ @unaSubasta.CalcularPrecio()</td>
-                @if (unaSubasta.Estado == EstadoPublicacion.Abierta)
-                {
-                    <td><a class="btn btn-primary" href="~/Subastas/Cerrar/@unaSubasta.Id">Cerrar</a></td>
-                }
-                else
-                {
-                    <td></td>
-                }
+                <th scope="col">Nombre</th>
+                <th scope="col">Fecha de publicación</th>
+                <th class="d-none d-md-table-cell" scope="col">Estado</th>
+                <th scope="col">Precio</th>
+                <th scope="col"></th>
             </tr>
-        }
-    </tbody>
+        </thead>
+        <tbody>
+            @foreach (Subasta unaSubasta in Model)
+            {
+                <tr>
+                    @if (unaSubasta.Estado == EstadoPublicacion.Abierta)
+                    {
+                        <td class="py-3 align-content-center" scope="row">
+                            <div class="d-flex flex-column">
+                                <span class="text-violeta">@unaSubasta.Nombre</span>
+                                <span class="pill pill-verde rounded-pill d-md-none">@unaSubasta.Estado</span>
+                            </div>
+                        </td>
+
+                        <td>@unaSubasta.FechaPublicacion.ToString("dd MMM yyyy")</td>
+                        <td class="d-none d-md-table-cell py-3 align-content-center"><span class="pill pill-verde rounded-pill">@unaSubasta.Estado</span></td>
+                    }
+                    else
+                    {
+                        <td class="py-3 align-content-center" scope="row">
+                            <div class="d-flex flex-column">
+                                <span>@unaSubasta.Nombre</span>
+                                <span class="pill pill-gris rounded-pill d-md-none">@unaSubasta.Estado</span>
+                            </div>
+                        </td>
+                        <td>@unaSubasta.FechaPublicacion.ToString("dd MMM yyyy")</td>
+                        <td class="d-none d-md-table-cell py-3 align-content-center"><span class="pill pill-gris rounded-pill">@unaSubasta.Estado</span></td>
+                    }
+
+                    <td>$ @unaSubasta.CalcularPrecio()</td>
+                    @if (unaSubasta.Estado == EstadoPublicacion.Abierta)
+                    {
+                        <td><a class="btn-violeta-2 text-decoration-none rounded-pill" href="~/Subastas/Cerrar/@unaSubasta.Id">CERRAR</a></td>
+                    }
+                    else
+                    {
+                        <td></td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
