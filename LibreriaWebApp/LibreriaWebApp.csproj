@@ -10,4 +10,8 @@
     <ProjectReference Include="..\LogicaNegocio\LogicaNegocio.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\Img\Icons\" />
+  </ItemGroup>
+
 </Project>

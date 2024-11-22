@@ -1,62 +1,121 @@
 ﻿@using LogicaNegocio;
 @model Subasta;
 
-@if (Model.Estado == EstadoPublicacion.Abierta)
-{
-    <h1>@Model.Nombre</h1>
-    <p>Publicado el @Model.FechaPublicacion</p>
-    @if (Model.CalcularPrecio() == 0)
-    {
-        <p>Aún no hay ofertas</p>
-    }
-    <p>$ @Model.CalcularPrecio() es la oferta mas alta</p>
-    <form method="post">
-        <input type="hidden" value="@Model.Id" name="idSubasta" id="idSubasta"></input>
-        <div class="form-group">
-            <label for="Monto">Monto</label>
-            <input type="number" name="Monto" class="form-control" id="Monto" aria- placeholder="$">
-        </div>
-        <a href="~/Publicaciones/Index" class="btn btn-secondary">Volver</a>
-        <button type="submit" class="btn btn-primary">Ofertar</button>
-    </form>
+
 
     @if (ViewBag.Exito != null)
     {
-        <div class="alert alert-success">
+        <div class="alert alert-success alert-dismissible alert-popup show full-width">
             <p>@ViewBag.Exito</p>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     }
 
     @if (ViewBag.Error != null)
     {
-        <div class="alert alert-danger">
+        <div class="alert alert-danger alert-dismissible alert-popup show full-width">
             <p>@ViewBag.Error</p>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     }
 
-    <h2>Articulos</h2>
+    <div class="container">
+        <div class="grid-ofertas">
+            <!--Titulo-->
+            <div class="caja caja-violeta flex-grow-1 d-flex flex-column justify-content-between">
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">Nombre</th>
-                <th scope="col">Categoria</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (Articulo unArticulo in ViewBag.Articulos)
-            {
-                <tr>
-                    <th scope="row">@unArticulo.Nombre</th>
-                    <td>@unArticulo.Categoria</td>
-                </tr>
-            }
-        </tbody>
-    </table>
-}
-else
-{
-    <div class="alert alert-danger">
-        <p>Esta subasta no está disponible.</p>
+                <div>
+                    <h1 class="text-uppercase">@Model.Nombre</h1>
+                    <p class="mb-0"><span>Publicado el @Model.FechaPublicacion.ToString("dd MMM yyyy")</span></p>
+                    @if (Model.CalcularPrecio() == 0)
+                    {
+                        <p><span>Aún no hay ofertas</span></p>
+                    }
+                </div>
+
+                <div>
+                    <p class="text-end mb-0 mt-5"><span>oferta mas alta</span></p>
+                    <p class="h1 text-end mb-4">$ @Model.CalcularPrecio()</p>
+                    <form method="post">
+                        <input type="hidden" value="@Model.Id" name="idSubasta" id="idSubasta"></input>
+                        <div class="form-group">
+                            <input type="number" name="Monto" class="form-control rounded-pill mb-3" id="Monto" placeholder="$ 0">
+                        </div>
+
+                        <div class="text-end">
+                            <a href="~/Publicaciones/Index" class="btn-blanco-3 text-decoration-none me-3">VOLVER</a>
+                            <button type="submit" class="btn-blanco rounded-pill">OFERTAR</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!--Ofertas-->
+            <div class="caja caja-dark">
+                <span class="h4">Ofertas</span>
+                <table class="table mt-4">
+                    <thead>
+                        <tr>
+                            <th scope="col">Cliente</th>
+                            <th scope="col">Monto</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!--Ofertas valida mas alta-->
+                        @if (Model.OfertaGanadora().Cliente != null)
+                        {
+                            <tr class="oferta-ganadora">
+                                <td class="align-content-center" scope="row">@Model.OfertaGanadora().Cliente.Email</td>
+                                <td>$ @Model.OfertaGanadora().Monto</td>
+                            </tr>
+                        }
+                        <!--Resto de ofertas-->
+                        @foreach (Oferta unaOferta in Model.Ofertas)
+                        {
+                            @if (unaOferta != Model.OfertaGanadora())
+                            {
+                                <tr>
+                                    <td>
+                                        @if (!unaOferta.Cliente.SaldoSuficiente(unaOferta.Monto))
+                                        {
+                                            <div class="d-flex flex-column">
+                                                <p class="mb-0">@unaOferta.Cliente.Email</p>
+                                                <p class="mt-2 mb-0 pill pill-rojo-dark rounded-pill">Saldo insuficiente</p>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <p class="mb-0">@unaOferta.Cliente.Email</p>
+                                        }
+                                    </td>
+                                    <td class="align-content-center" scope="row">$ @unaOferta.Monto</td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <!--Articulos-->
+            <div class="caja caja-dark">
+                <span class="h4">Articulos</span>
+                <table class="table mt-4">
+                    <thead>
+                        <tr>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Categoria</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (Articulo unArticulo in Model.Articulos)
+                        {
+                            <tr>
+                                <td scope="row">@unArticulo.Nombre</td>
+                                <td>@unArticulo.Categoria</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
     </div>
 }

@@ -1,55 +1,79 @@
 ﻿@using LogicaNegocio;
 @model List<Publicacion>;
 
-<h1>Publicaciones</h1>
+<div class="container-lg bg-claro py-4 py-md-5 px-md-5 px-3">
+    <h1 class="mb-5 text-center text-md-start">Publicaciones</h1>
 
-@if (ViewBag.Exito != null)
-{
-    <div class="alert alert-success">
-        <p>@ViewBag.Exito</p>
-    </div>
-}
+    @if (ViewBag.Exito != null)
+    {
+        <div class="alert alert-success alert-dismissible alert-popup show full-width">
+            <p>@ViewBag.Exito</p>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
 
-@if (ViewBag.Error != null)
-{
-    <div class="alert alert-danger">
-        <p>@ViewBag.Error</p>
-    </div>
-}
+    @if (ViewBag.Error != null)
+    {
+        <div class="alert alert-danger alert-dismissible alert-popup show full-width">
+            <p>@ViewBag.Error</p>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
 
 
-<table class="table">
-    <thead>
-        <tr>
-            <th scope="col">Nombre</th>
-            <th scope="col">Estado</th>
-            <th scope="col">Precio</th>
-            <th scope="col"></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (Publicacion unaPublicacion in Model)
-        {
+    <table class="table">
+        <thead>
             <tr>
-                <th scope="row">@unaPublicacion.Nombre</th>
-                <td>@unaPublicacion.Estado</td>
-                <td>$ @unaPublicacion.CalcularPrecio()</td>
-                @if (unaPublicacion.Estado == EstadoPublicacion.Abierta)
-                {
-                    if (unaPublicacion is Venta)
+                <th scope="col">Nombre</th>
+                <th class="d-none d-md-table-cell" scope="col">Estado</th>
+                <th scope="col">Precio</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Publicacion unaPublicacion in Model)
+            {
+                <tr>
+                    @if (unaPublicacion.Estado == EstadoPublicacion.Abierta)
                     {
-                        <td><a class="btn btn-primary" href="~/Publicaciones/Comprar/@unaPublicacion.Id">Comprar</a></td>
+                        <td class="py-3 align-content-center" scope="row">
+                            <div class="d-flex flex-column">
+                                <span class="text-violeta">@unaPublicacion.Nombre</span>
+                                <span class="pill pill-verde rounded-pill d-md-none">@unaPublicacion.Estado</span>
+                            </div>
+                        </td>
+
+
+                        <td class="d-none d-md-table-cell py-3 align-content-center"><span class="pill pill-verde rounded-pill">@unaPublicacion.Estado</span></td>
                     }
                     else
                     {
-                        <td><a class="btn btn-primary" href="~/Publicaciones/Ofertar/@unaPublicacion.Id">Ofertar en subasta</a></td>
+                        <td class="py-3 align-content-center" scope="row">
+                            <div class="d-flex flex-column">
+                                <span>@unaPublicacion.Nombre</span>
+                                <span class="pill pill-gris rounded-pill d-md-none">@unaPublicacion.Estado</span>
+                            </div>
+                        </td>
+                        <td class="d-none d-md-table-cell py-3 align-content-center"><span class="pill pill-gris rounded-pill">@unaPublicacion.Estado</span></td>
                     }
-                }
-                else
-                {
-                    <td></td>
-                }
-            </tr>
-        }
-    </tbody>
-</table>
+                    <td class="py-3 align-content-center">$ @unaPublicacion.CalcularPrecio()</td>
+                    @if (unaPublicacion.Estado == EstadoPublicacion.Abierta)
+                    {
+                        if (unaPublicacion is Venta)
+                        {
+                            <td class="py-3"><a class="btn-violeta-2 text-decoration-none rounded-pill" href="~/Publicaciones/Comprar/@unaPublicacion.Id">COMPRAR</a></td>
+                        }
+                        else
+                        {
+                            <td class="py-3"><a class="btn-violeta-2 text-decoration-none rounded-pill" href="~/Publicaciones/Ofertar/@unaPublicacion.Id">OFERTAR</a></td>
+                        }
+                    }
+                    else
+                    {
+                        <td class="py-3"></td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

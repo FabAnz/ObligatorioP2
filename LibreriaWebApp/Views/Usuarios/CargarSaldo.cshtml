@@ -1,25 +1,40 @@
-﻿<h1>Cargar saldo</h1>
-<h2>Saldo actual $ @ViewBag.Saldo</h2>
-
-<form method="post">
-    <div class="form-group">
-        <label for="Monto">Monto</label>
-        <input type="number" name="Monto" class="form-control" id="Monto" aria- placeholder="$">
-    </div>
-    <a href="~/Publicaciones/Index" class="btn btn-secondary">Volver</a>
-    <button type="submit" class="btn btn-primary">Cargar</button>
-</form>
-
-@if (ViewBag.Exito != null)
+﻿@if (ViewBag.Exito != null)
 {
-    <div class="alert alert-success">
+    <div class="alert alert-success alert-dismissible alert-popup show full-width">
         <p>@ViewBag.Exito</p>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 }
 
 @if (ViewBag.Error != null)
 {
-    <div class="alert alert-danger">
+    <div class="alert alert-danger alert-dismissible alert-popup show full-width">
         <p>@ViewBag.Error</p>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 }
+
+<div class="container">
+
+    <div class="caja caja-violeta flex-grow-1 d-flex flex-column justify-content-between">
+
+        <div>
+            <h1 class="mb-5">Cargar saldo</h1>
+        </div>
+
+
+        <div>
+            <p class="mb-0 text-end"><span>saldo actual</span></p>
+            <p class="h1 text-end mb-3">$ @ViewBag.Saldo</p>
+            <form method="post">
+                <div class="form-group">
+                    <input type="number" name="Monto" class="form-control rounded-pill mb-3" id="Monto" placeholder="$">
+                </div>
+                <div class="text-end">
+                    <a href="~/Publicaciones/Index" class="btn-blanco-3 text-decoration-none me-3">VOLVER</a>
+                    <button type="submit" class="btn-blanco rounded-pill">CARGAR</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

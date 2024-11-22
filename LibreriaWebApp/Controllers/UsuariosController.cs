@@ -92,6 +92,8 @@ namespace LibreriaWebApp.Controllers
             }
             catch (Exception ex)
             {
+                Cliente unCliente = this.UsuarioActivo() as Cliente;
+                ViewBag.Saldo = unCliente.Saldo;
                 ViewBag.Error = ex.Message;
                 return View();
             }
