@@ -11,7 +11,7 @@ namespace Obligatorio.Controllers
     public class SubastasController : Controller
     {
         private Sistema sistema = Sistema.Instancia;
-
+        
         public IActionResult Index(string exito, string error)
         {
             try

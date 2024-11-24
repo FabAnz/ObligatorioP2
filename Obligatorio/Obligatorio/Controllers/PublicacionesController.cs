@@ -9,7 +9,7 @@ namespace Obligatorio.Controllers
     public class PublicacionesController : Controller
     {
         private Sistema sistema = Sistema.Instancia;
-
+        
         public IActionResult Index(string exito, string error)
         {
             ViewBag.Exito = exito;

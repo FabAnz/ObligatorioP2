@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Fabian\\Desktop\\Obligatorio\\Obligatorio\\Obligatorio.csproj": {}
+    "D:\\ORT\\Programacion 2\\Obligatorio 2\\ObligatorioP2\\Obligatorio\\Obligatorio\\Obligatorio.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Fabian\\Desktop\\Obligatorio\\LogicaNegocio\\LogicaNegocio.csproj": {
+    "D:\\ORT\\Programacion 2\\Obligatorio 2\\ObligatorioP2\\Obligatorio\\LogicaNegocio\\LogicaNegocio.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Fabian\\Desktop\\Obligatorio\\LogicaNegocio\\LogicaNegocio.csproj",
+        "projectUniqueName": "D:\\ORT\\Programacion 2\\Obligatorio 2\\ObligatorioP2\\Obligatorio\\LogicaNegocio\\LogicaNegocio.csproj",
         "projectName": "LogicaNegocio",
-        "projectPath": "C:\\Users\\Fabian\\Desktop\\Obligatorio\\LogicaNegocio\\LogicaNegocio.csproj",
+        "projectPath": "D:\\ORT\\Programacion 2\\Obligatorio 2\\ObligatorioP2\\Obligatorio\\LogicaNegocio\\LogicaNegocio.csproj",
         "packagesPath": "C:\\Users\\Fabian\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Fabian\\Desktop\\Obligatorio\\LogicaNegocio\\obj\\",
+        "outputPath": "D:\\ORT\\Programacion 2\\Obligatorio 2\\ObligatorioP2\\Obligatorio\\LogicaNegocio\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Fabian\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -65,14 +65,14 @@
         }
       }
     },
-    "C:\\Users\\Fabian\\Desktop\\Obligatorio\\Obligatorio\\Obligatorio.csproj": {
+    "D:\\ORT\\Programacion 2\\Obligatorio 2\\ObligatorioP2\\Obligatorio\\Obligatorio\\Obligatorio.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Fabian\\Desktop\\Obligatorio\\Obligatorio\\Obligatorio.csproj",
+        "projectUniqueName": "D:\\ORT\\Programacion 2\\Obligatorio 2\\ObligatorioP2\\Obligatorio\\Obligatorio\\Obligatorio.csproj",
         "projectName": "Obligatorio",
-        "projectPath": "C:\\Users\\Fabian\\Desktop\\Obligatorio\\Obligatorio\\Obligatorio.csproj",
+        "projectPath": "D:\\ORT\\Programacion 2\\Obligatorio 2\\ObligatorioP2\\Obligatorio\\Obligatorio\\Obligatorio.csproj",
         "packagesPath": "C:\\Users\\Fabian\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Fabian\\Desktop\\Obligatorio\\Obligatorio\\obj\\",
+        "outputPath": "D:\\ORT\\Programacion 2\\Obligatorio 2\\ObligatorioP2\\Obligatorio\\Obligatorio\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Fabian\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -90,8 +90,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\Fabian\\Desktop\\Obligatorio\\LogicaNegocio\\LogicaNegocio.csproj": {
-                "projectPath": "C:\\Users\\Fabian\\Desktop\\Obligatorio\\LogicaNegocio\\LogicaNegocio.csproj"
+              "D:\\ORT\\Programacion 2\\Obligatorio 2\\ObligatorioP2\\Obligatorio\\LogicaNegocio\\LogicaNegocio.csproj": {
+                "projectPath": "D:\\ORT\\Programacion 2\\Obligatorio 2\\ObligatorioP2\\Obligatorio\\LogicaNegocio\\LogicaNegocio.csproj"
               }
             }
           }

@@ -7,7 +7,7 @@ namespace Obligatorio.Controllers
     public class UsuariosController : Controller
     {
         private Sistema sistema = Sistema.Instancia;
-        
+
         public IActionResult RegistrarCliente()
         {
             return View();
@@ -18,7 +18,6 @@ namespace Obligatorio.Controllers
         {
             try
             {
-                Sistema sistema = Sistema.Instancia;
                 sistema.AgregarCliente(unCliente);
                 return RedirectToAction("Login", new { exito = "Te registraste con éxito." });
             }
@@ -43,7 +42,6 @@ namespace Obligatorio.Controllers
         {
             try
             {
-                Sistema sistema = Sistema.Instancia;
                 sistema.Login(email, pass);
                 HttpContext.Session.SetString("email", email);
                 Usuario usuarioActivo = sistema.ObtenerUsuarioPorEmail(HttpContext.Session.GetString("email"));
@@ -68,7 +66,6 @@ namespace Obligatorio.Controllers
         {
             try
             {
-                Sistema sistema = Sistema.Instancia;
                 Usuario usuarioActivo = sistema.ObtenerUsuarioPorEmail(HttpContext.Session.GetString("email"));
 
 
