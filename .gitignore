@@ -1,4 +1,21 @@
-Obligatorio/.vs/
 Diagrama UML.asta.lock
-/LibreriaWebApp/obj/
-/obj/
+
+# Visual Studio
+######################
+.vs/
+*.suo
+*.user
+*.userosscache
+*.userprefs
+*.lnk
+*.ide
+
+# Archivos de compilación y publicación
+######################
+src/**/bin/
+src/**/obj/
+debug/
+release/
+TestResults/
+publish/
+artifacts/
