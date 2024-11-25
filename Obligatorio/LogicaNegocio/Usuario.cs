@@ -59,13 +59,16 @@ namespace LogicaNegocio
             bool contieneNum = false;
 
             int i = 0;
-            while ((!contieneLetra || !contieneNum) && i < this._pass.Length)
+            if (this._pass != null)
             {
-                if (Char.IsLetter(this._pass[i]))
-                    contieneLetra = true;
-                if (Char.IsDigit(this._pass[i]))
-                    contieneNum = true;
-                i++;
+                while ((!contieneLetra || !contieneNum) && i < this._pass.Length)
+                {
+                    if (Char.IsLetter(this._pass[i]))
+                        contieneLetra = true;
+                    if (Char.IsDigit(this._pass[i]))
+                        contieneNum = true;
+                    i++;
+                }
             }
 
             if (!contieneLetra)
