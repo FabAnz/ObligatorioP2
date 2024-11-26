@@ -317,6 +317,17 @@ namespace LogicaNegocio
             venta10.AgregarArticulo(BuscarArticuloPorNombre("Sofá"));
             venta10.AgregarArticulo(BuscarArticuloPorNombre("Mesa de comedor"));
 
+            /*venta1.FechaPublicacion = new DateTime(2024, 04, 19);
+            venta2.FechaPublicacion = new DateTime(2024, 09, 09);
+            venta3.FechaPublicacion = new DateTime(2024, 04, 23);
+            venta4.FechaPublicacion = new DateTime(2024, 02, 25);
+            venta5.FechaPublicacion = new DateTime(2024, 07, 08);
+            venta6.FechaPublicacion = new DateTime(2024, 06, 11);
+            venta7.FechaPublicacion = new DateTime(2024, 03, 18);
+            venta8.FechaPublicacion = new DateTime(2024, 07, 21);
+            venta9.FechaPublicacion = new DateTime(2024, 06, 07);
+            venta10.FechaPublicacion = new DateTime(2024, 02, 14);*/
+
             venta1.FechaPublicacion = DateTime.Parse("19-04-2024");
             venta2.FechaPublicacion = DateTime.Parse("09-09-2024");
             venta3.FechaPublicacion = DateTime.Parse("23-04-2024");
