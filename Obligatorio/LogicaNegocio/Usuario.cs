@@ -86,13 +86,6 @@ namespace LogicaNegocio
                 rolActivo = Rol.Cliente;
             return rolActivo;
         }
-
-        //Verifica que el rol del usuario sea el correcto para la vista a la que se quiere acceder
-        public void VerificarRol(Rol unRol)
-        {
-            if (this.ObtenerRol() != unRol)
-                throw new Exception("No tiene permiso para acceder a esta sección.");
-        }
     }
 }
 
