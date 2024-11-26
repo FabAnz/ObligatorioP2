@@ -1,4 +1,13 @@
-### (Desarrollo en proceso)
+## Proyecto: https://obligatoriop2-339182.azurewebsites.net/
+
+### Credenciales de administrador
+
+Email: `roberto.suarez@example.com`
+
+Password: `adminPass123`
+
+
+# Requisitos del proyecto
 
 ## Punto 1: Diseño
 
